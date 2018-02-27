@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+body{
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	background-color: #fff;
+	color: #000;
+}
+.box{
+	width: 1200px;
+	margin: 20px auto 0;
+}
+.row{
+	width: 920px;
+	overflow: hidden;
+	margin: 0 auto 20px;
+}
+.label, .input, .textarea, .select{
+	float: left;
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+}
+.label, .input, .select, .submit{
+	height: 40px;
+	line-height: 40px;
+}
+.input, .select{
+	padding: 0 10px;
+}
+.input, .textarea, .select{
+	outline: none;
+	border: 1px solid #ccc;
+}
+.label{
+	width: 72px;
+	text-align: right;
+	margin-right: 20px;
+	vertical-align: middle;
+	color: #666;
+}
+.input{
+	width: 800px;
+	border-radius: 8px;
+}
+.textarea{
+	width: 800px;
+	height: 200px;
+	resize: none;
+	padding: 10px;
+	line-height: 20px;
+}
+.select{
+	margin: 0 20px 20px 0;
+}
+.submit{
+	display: block;
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
+	color: #fff;
+	background-color: red;
+	text-decoration: none;
+	border-radius: 12px;
+	border: none;
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	cursor: pointer;
+}
+.submit:hover{
+	background-color: rgba(255, 0, 0, .8);
+}

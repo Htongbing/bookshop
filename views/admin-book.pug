@@ -1,0 +1,81 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title #{title}
+    link(rel='stylesheet', href='/style/reset.css')
+    link(rel='stylesheet', href='/style/admin-book.css')
+  body
+    form.box(method="post", action="/admin/book/new")
+      input(type="hidden", name='book[_id]', value=book._id)
+      .row
+        label.label(for='book_name') 书名
+        input#book_name.input(type='text', name='book[name]', value=book.name)
+      .row
+        label.label(for='book_author') 作者
+        input#book_author.input(type='text', name='book[author]', value=book.author)
+      .row
+        label.label(for='book_publish') 出版社
+        input#book_publish.input(type='text', name='book[publish]', value=book.publish)
+      .row
+        label.label(for='book_pubTime') 出版时间
+        input#book_pubTime.input(type='text', name='book[pubTime]', value=book.pubTime)
+      .row
+        label.label(for='book_price') 价格
+        input#book_price.input(type='text', name='book[price]', value=book.price)
+      .row
+        label.label(for='book_oriPrice') 原价
+        input#book_oriPrice.input(type='text', name='book[oriPrice]', value=book.oriPrice)
+      .row
+        label.label(for='book_img') 图片地址
+        input#book_img.input(type='text', name='book[img]', value=book.img)
+      .row
+        label.label(for='book_summary') 简介
+        textarea#book_summary.textarea(name='book[summary]') #{book.summary}
+      .row
+        label.label(for='book_detail_num') 版次
+        input#book_detail_num.input(type='text', name='book[num]', value=book.num)
+      .row
+        label.label(for='book_detail_page') 页数
+        input#book_detail_page.input(type='text', name='book[page]', value=book.page)
+      .row
+        label.label(for='book_detail_word') 字数
+        input#book_detail_word.input(type='text', name='book[word]', value=book.word)
+      .row
+        label.label(for='book_detail_print') 印刷时间
+        input#book_detail_print.input(type='text', name='book[print]', value=book.print)
+      .row
+        label.label 开本
+        select#book_detail_size.select(name='book[size]', value=book.size)
+          option(value='')
+          option(value='16开') 16开
+          option(value='32开') 32开
+          option(value='64开') 64开
+      .row
+        label.label 纸张
+        select#book_detail_pager.select(name='book[pager]', value=book.pager)
+          option(value='')
+          option(value='胶版纸') 胶版纸
+      .row
+        label.label 包装
+        select#book_detail_package.select(name='book[package]', value=book.package)
+          option(value='')
+          option(value='平装-胶订') 平装-胶订
+      .row
+        label.label 是否套装
+        select#book_detail_suit.select(name='book[suit]', value=book.suit)
+          option(value='否') 否
+          option(value='是') 是
+      .row
+        label.label(for='book_detail_ISBN') ISBN
+        input#book_detail_ISBN.input(type='text', name='book[ISBN]', value=book.ISBN)
+      .row
+        label.label 分类
+        select.select
+          option(value='全部') 全部
+        select#book_detail_classifyOne_first.select(name='book[classify][first]')
+          option(value='小说') 小说
+        select#book_detail_classifyOne_second.select(name='book[classify][second]')
+          option(value='侦探/悬疑/推理') 侦探/悬疑/推理
+      .row
+        button#submit.submit 提&nbsp;&nbsp;&nbsp;交

@@ -1,0 +1,165 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title #{title}
+    link(rel='stylesheet', href='/style/reset.css')
+    link(rel='stylesheet', href='/style/fonts.css')
+    link(rel='stylesheet', href='/style/detail.css')
+  body
+    header
+      .tool_line
+        #tool.tool
+          ul.operate
+            li
+              a(href='/shopping')
+                span.icon-cart
+                | 购物车
+                b.cart_items_num 0
+            li
+              a(href='/user') 我的订单
+            li
+              a(href='/user') 我的帐号
+          .welcome
+            span
+              | 欢迎光临，请
+              a(href='/login') 登录
+              |  没有账号？点击
+              a(href='/register/phone') 注册
+      .logo_line
+        .logo
+          a(href='/')
+            img(src='/images/logo.jpg')
+          .search_line
+            .search
+              input(type='text')
+              #search_classify
+                span 全部分类
+                span.icon
+                ul
+                  li
+                    a(href='javascript:;') 全部分类
+                  li
+                    a(href='javascript:;') 图书
+                  li
+                    a(href='javascript:;') 电子书
+              button
+                span.icon-search
+            .search_hot
+              | 热搜：
+              a(href='javascript:;') 日本语
+              a(href='javascript:;') 妖怪客栈
+              a(href='javascript:;') 汗青堂丛书
+              a(href='javascript:;') 看万物
+              a(href='javascript:;') 使女的故事
+              a(href='javascript:;') 高级搜索
+          .user_line
+            a.user_cart(href='/shopping')
+              span.icon-cart
+              | 						购物车
+              b.cart_items_num 0
+            a.user_indent(href='/user')
+              | 我的订单
+    .main_continer
+      .main
+        ul.nav
+          li
+            a(href='/list') 全部
+            | &gt;
+            - for(var key in book.classify)
+            li
+              a(href='/list') #{book.classify[key]}
+              | &gt;
+          li #{book.name}
+        .detail
+          .detail_img
+            img(src=book.img)
+            a(href='javascript:;')
+              span.icon-star-empty
+              | 收藏商品
+          .detail_info
+            h1 #{book.name}
+            .summary
+              p #{book.summary}
+            .author
+              p
+                | 作者：
+                a(href='/list') #{book.author}
+              p
+                | 出版社：
+                a(href='/list') #{book.publish}
+              p 出版时间：#{book.pubTime}
+            .price
+              p.cur_price
+                | &yen;#{book.price}
+                span (6.08折)
+              p.ori_price 原价：&yen;#{book.oriPrice}
+            .num
+              input#buy_num(type='text', value='1')
+              a#num_plus(href='javascript:;')
+                span.icon-plus
+              a#num_minus(href='javascript:;')
+                span.icon-minus
+              .sum
+                span.cur_price_sum &yen;#{book.price}
+                span.ori_price_sum &yen;#{book.oriPrice}
+            .buy
+              a(href='javascript:;')
+                span.icon-cart
+                | 加入购物车
+              a(href='javascript:;') 立即购买
+        .comment
+          ul
+            li.active 商品详情
+            li 商品评论(999)
+          .com_detail
+            ul
+              li 版 次：#{book.num}
+              li 页 数：#{book.page}
+              li 字 数：#{book.word}
+              li 印刷时间：#{book.print}
+              li 开 本：#{book.size}
+              li 纸 张：#{book.pager}
+              li 包 装：#{book.package}
+              li 是否套装：#{book.suit}
+              li 国际标准书号ISBN：#{book.ISBN}
+              li.classify
+                span 所属分类：
+                div
+                  p
+                    a(href="/list") 全部
+                    - for(var key in book.classify)
+                      | &gt;
+                      a(href="/list") #{book.classify[key]}
+          .com_list
+            ul
+              li.active 全部（999）
+              li 好评（996）
+              li 中评（3）
+              li 差评（0）
+            .com_region
+              .com_item
+                .item_left
+                  p.des_detail 这个世界上有两样东西不可直视，一是太阳，一是人心。
+                  p.des_time 2018-02-01 20:03:33
+                .item_right
+                  img(src='/images/default.gif')
+                  p 无昵称用户
+              .com_item
+                .item_left
+                  p.des_detail
+                    | 白金数据，由日本推理小说家东野圭吾所著的悬疑小说， 由 《白金数据》这部小说改编的同名电影《白金数据》已于2013年3月在日本上映了，相信有很多东野圭吾的粉丝已经看过这部电影了，至于是否忠于原著那就是“仁者见仁，智者见智”的事情了。
+                  p.des_time 2018-02-01 20:03:33
+                .item_right
+                  img(src='/images/default.gif')
+                  p 无昵称用户
+            .pagenum_container
+              .pagenum
+                a(href='javascript:;') &lt;
+                a.active(href='javascript:;') 1
+                a(href='javascript:;') 2
+                a(href='javascript:;') 3
+                a(href='javascript:;') 4
+                a(href='javascript:;') 5
+                span ···
+                a(href='javascript:;') &gt;

@@ -1,0 +1,129 @@
+body{
+	font-size: 14px;
+	font-family: "Microsoft YaHei";
+	background-color: #fff;
+	user-select: none;
+}
+::-ms-clear, ::-ms-reveal{
+	display: none;
+}
+img{
+	display: block;
+	border: none;
+}
+input, button{
+	outline: none;
+	border: none;
+}
+ul, li{
+	list-style: none;
+}
+a{
+	color: #000;
+	text-decoration: none;
+}
+a:link, a:visited, a:hover, a:active{
+	color: #000;
+	text-decoration: none;
+}
+header{
+	width: 100%;
+	border-bottom: 4px solid red;
+}
+header div{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+header a{
+	display: block;
+	width: 200px;
+	overflow: hidden;
+}
+.login_box{
+	width: 400px;
+	border: 1px solid #ccc;
+	box-shadow: 0px 1px 2px #eee;
+	margin: 40px auto;
+	background: #fff;
+}
+.login{
+	padding: 20px;
+	overflow: hidden;
+}
+.login_method{
+	color: #666;
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+.login_info{
+	border: 1px solid #e6e6e6;
+	border-radius: 2px;
+	position: relative;
+}
+.icon{
+	font-size: 20px;
+	color: #ccc;
+	padding: 0 5px;
+	vertical-align: middle;
+}
+.login_info input{
+	font-size: 14px;
+	font-family: Arial;
+	padding: 10px 5px;
+	width: 318px;
+}
+.placeholder{
+	color: #B0B0B0;
+	position: absolute;
+	top: 10px;
+	left: 35px;
+}
+.icon-cross{
+	position: absolute;
+	font-size: 12px;
+	top: 50%;
+	margin-top: -6px;
+	right: 10px;
+	cursor: pointer;
+	color: #ccc;
+	display: none;
+}
+.tip{
+	color: #6e6e6e;
+	height: 30px;
+	line-height: 30px;
+	visibility: hidden;
+	margin-left: 5px;
+}
+.auto_login{
+	margin-top: 10px;
+	line-height: 40px;
+}
+.auto_login a{
+	float: right;
+	color: #666;
+}
+.auto_login label{
+	color: #666;
+}
+.btn{
+	background-color: red;
+	width: 100%;
+	padding: 0;
+	color: #fff;
+	font-size: 20px;
+	height: 50px;
+	line-height: 50px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+.login > a{
+	color: #666;
+	float: right;
+	margin-top: 10px;
+}
+.login a:hover{
+	text-decoration: underline;
+	color: #000;
+}

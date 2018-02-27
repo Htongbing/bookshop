@@ -1,0 +1,198 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title #{title}
+    link(rel='stylesheet', href='/style/reset.css')
+    link(rel='stylesheet', href='/style/fonts.css')
+    link(rel='stylesheet', href='/style/shopping.css')
+  body
+    header
+      .tool_line
+        #tool.tool
+          ul.operate
+            li
+              a(href='javascript:;')
+                span.icon-cart
+                | 购物车
+                b.cart_items_num 0
+            li
+              a(href='javascript:;') 我的订单
+            li
+              a(href='user.html') 我的帐号
+          .welcome
+            span
+              | 欢迎光临，请
+              a(href='login.html') 登录
+              |  没有账号？点击
+              a(href='register-phone.html') 注册
+      .logo_line
+        .logo
+          a(href='bookshop.html')
+            img(src='/images/logo.jpg')
+          .search_line
+            .search
+              input(type='text')
+              #search_classify
+                span 全部分类
+                span.icon
+                ul
+                  li
+                    a(href='javascript:;') 全部分类
+                  li
+                    a(href='javascript:;') 图书
+                  li
+                    a(href='javascript:;') 电子书
+              button
+                span.icon-search
+            .search_hot
+              | 热搜：
+              a(href='javascript:;') 日本语
+              a(href='javascript:;') 妖怪客栈
+              a(href='javascript:;') 汗青堂丛书
+              a(href='javascript:;') 看万物
+              a(href='javascript:;') 使女的故事
+              a(href='javascript:;') 高级搜索
+          .user_line
+            a.user_cart(href='javascript:;')
+              span.icon-cart
+              | 						购物车
+              b.cart_items_num 0
+            a.user_indent(href='javascript:;')
+              | 我的订单
+      // logo、搜索栏结束
+    .main_container
+      .main
+        h1.head
+          span.w200
+            a.all_select(href='javascript:;')
+              span.icon-checkmark
+            | 全选
+          span.w400 商品信息
+          span.w150 单价（元）
+          span.w150 数量
+          span.w150 金额（元）
+          span.w150 操作
+        ul.list
+          li
+            span.w200
+              a.select(href='javascript:;')
+                span.icon-checkmark
+              a.img(href='detail.html')
+                img(src='/images/new1.jpg')
+            span.w400.title
+              a(href='detail.html') 白金数据
+            span.w150.item_pri ¥24.70
+            span.w150.item_num
+              a.minus(href='javascript:;')
+                span.icon-minus
+              input(type='text', value='1')
+              a.plus(href='javascript:;')
+                span.icon-plus
+            span.w150 ¥24.70
+            span.w150.del
+              a(href='javascript:;') 删除
+          li
+            span.w200
+              a.select(href='javascript:;')
+                span.icon-checkmark
+              a.img(href='detail.html')
+                img(src='/images/new1.jpg')
+            span.w400.title
+              a(href='detail.html') 白金数据
+            span.w150.item_pri ¥24.70
+            span.w150.item_num
+              a.minus(href='javascript:;')
+                span.icon-minus
+              input(type='text', value='1')
+              a.plus(href='javascript:;')
+                span.icon-plus
+            span.w150 ¥24.70
+            span.w150.del
+              a(href='javascript:;') 删除
+          li
+            span.w200
+              a.select(href='javascript:;')
+                span.icon-checkmark
+              a.img(href='detail.html')
+                img(src='/images/new1.jpg')
+            span.w400.title
+              a(href='detail.html') 白金数据
+            span.w150.item_pri ¥24.70
+            span.w150.item_num
+              a.minus(href='javascript:;')
+                span.icon-minus
+              input(type='text', value='1')
+              a.plus(href='javascript:;')
+                span.icon-plus
+            span.w150 ¥24.70
+            span.w150.del
+              a(href='javascript:;') 删除
+          li
+            span.w200
+              a.select(href='javascript:;')
+                span.icon-checkmark
+              a.img(href='detail.html')
+                img(src='/images/new1.jpg')
+            span.w400.title
+              a(href='detail.html') 白金数据
+            span.w150.item_pri ¥24.70
+            span.w150.item_num
+              a.minus(href='javascript:;')
+                span.icon-minus
+              input(type='text', value='1')
+              a.plus(href='javascript:;')
+                span.icon-plus
+            span.w150 ¥24.70
+            span.w150.del
+              a(href='javascript:;') 删除
+          li
+            span.w200
+              a.select(href='javascript:;')
+                span.icon-checkmark
+              a.img(href='detail.html')
+                img(src='/images/new1.jpg')
+            span.w400.title
+              a(href='detail.html') 白金数据
+            span.w150.item_pri ¥24.70
+            span.w150.item_num
+              a.minus(href='javascript:;')
+                span.icon-minus
+              input(type='text', value='1')
+              a.plus(href='javascript:;')
+                span.icon-plus
+            span.w150 ¥24.70
+            span.w150.del
+              a(href='javascript:;') 删除
+          li
+            span.w200
+              a.select(href='javascript:;')
+                span.icon-checkmark
+              a.img(href='detail.html')
+                img(src='/images/new1.jpg')
+            span.w400.title
+              a(href='detail.html') 白金数据
+            span.w150.item_pri ¥24.70
+            span.w150.item_num
+              a.minus(href='javascript:;')
+                span.icon-minus
+              input(type='text', value='1')
+              a.plus(href='javascript:;')
+                span.icon-plus
+            span.w150 ¥24.70
+            span.w150.del
+              a(href='javascript:;') 删除
+        .pay
+          span
+            a.all_select(href='javascript:;')
+              span.icon-checkmark
+            | 全选
+          a.all_del(href='javascript:;') 批量删除
+          span.num_container
+            | 已选择
+            span.all_num 6
+            | 件商品
+          a.btn(href='javascript:;') 结  算
+          p.sum
+            | 总计：
+            span.all_price ¥148.20

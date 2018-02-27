@@ -1,0 +1,50 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title #{title}
+    link(rel='stylesheet', href='/style/reset.css')
+    link(rel='stylesheet', href='/style/register.css')
+    link(rel='stylesheet', href='/style/fonts.css')
+  body
+    header
+      div
+        a(href='bookshop.html')
+          img(src='/images/logo.jpg')
+    .register_box
+      p
+        | 已有帐号？
+        a(href='login.html') 立即登录
+        a(href='bookshop.html') 回到首页
+      ul
+        li
+          a(href='register-phone.html')
+            span.icon-mobile
+            | 手机注册
+        li
+          a(href='register-mail.html')
+            span.icon-mail3
+            | 邮箱注册
+        li.active
+          a(href='javascript:;')
+            span.icon-user
+            | 普通账号注册
+      .register
+        div
+          label(for='user_id') 帐号名称
+          input#user_id(type='text')
+          p 帐号以字母开头，由小写英文字母和数字组成的4-16位字符
+        div
+          label(for='user_password') 登录密码
+          input#user_password(type='password')
+          p 密码为6-20个字符，可由英文、数字及符号组成
+        div
+          label(for='user_repassword') 确认密码
+          input#user_repassword(type='password')
+          p 请再次输入密码
+        div
+          label(for='vcode') 验证码
+          input#vcode(type='password', placeholder='请输入验证码')
+          p 请填写图片中的字符，不区分大小写
+        div
+          button 立即注册

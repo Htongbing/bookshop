@@ -1,0 +1,715 @@
+body{
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+	background-color: #fff;
+}
+::-ms-clear, ::-ms-reveal{
+	display: none;
+}
+img{
+	display: block;
+	border: none;
+}
+input, button{
+	outline: none;
+	border: none;
+}
+ul, li{
+	list-style: none;
+}
+a{
+	color: #000;
+	text-decoration: none;
+}
+a:link, a:visited, a:hover, a:active{
+	color: #000;
+	text-decoration: none;
+}
+header{
+	width: 100%;
+	border-bottom: 4px solid red;
+}
+.tool_line{
+	width: 100%;
+	background-color: #f9f9f9;
+	border-bottom: 1px solid #f2f2f2;
+}
+.tool{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	height: 34px;
+	line-height: 34px;
+	position: relative;
+	padding: 0 20px;
+	color: #666;
+}
+.tool a{
+	color: #666;
+}
+.tool .welcome,
+.tool .operate{
+	float: right;
+}
+.tool .welcome{
+	margin-right: 20px;
+}
+.tool .welcome a{
+	color: red;
+}
+.tool .operate > li{
+	float: left;
+	margin-right: 10px;
+}
+.tool .operate > li:after{
+	content: "";
+	border-left: 1px solid #ccc;
+	margin-left: 10px;
+}
+.tool .operate > li:last-child:after{
+	border-left: none;
+	margin-left: 0;
+}
+.tool .operate > li a:hover{
+	color: red;
+}
+.tool .operate > li a .icon-cart{
+	margin-right: 5px;
+	color: red;
+}
+.tool .operate > li a b{
+	color: red;
+}
+.logo_line{
+	width: 100%;
+	background-color: #fff;
+	color: #969696;
+	padding-bottom: 20px;
+}
+.logo_line a{
+	color: #969696;
+}
+.logo{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+}
+.logo > a{
+	display: block;
+	width: 200px;
+	overflow: hidden;
+}
+.logo .search_line{
+	margin: 0 auto;
+	padding-top: 20px;
+}
+.logo .search_line .search{
+	border: 2px solid red;
+	display: flex;
+}
+.logo .search_line .search input{
+	width: 395px;
+	padding-left: 5px;
+}
+.logo .search_line .search > div{
+	background-color: #f2f2f2;
+	width: 90px;
+	text-align: center;
+	height: 36px;
+	line-height: 36px;
+	padding: 0 15px;
+	font-size: 16px;
+	position: relative;
+	cursor: pointer;
+}
+.logo .search_line .search > div .icon{
+	display: inline-block;
+	border: 6px solid #ccc;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	border-bottom: none;
+	margin-left: 10px;
+	vertical-align: middle;
+}
+.logo .search_line .search > div > ul{
+	width: 100%;
+	box-sizing: border-box;
+	position: absolute;
+	top: 36px;
+	left: 0;
+	line-height: 1;
+	background-color: #fff;
+	border: 1px solid #eee;
+	text-align: left;
+	font-size: 12px;
+	line-height: 1;
+	z-index: 99;
+	display: none;
+}
+.logo .search_line .search > div > ul a{
+	display: block;
+	width: 100%;
+	padding: 8px 15px;
+	box-sizing: border-box;
+	color: #646464;
+}
+.logo .search_line .search > div > ul a:hover{
+	color: #fff;
+	text-decoration: underline;
+	background-color: #ccc;
+}
+.logo .search_line .search > button{
+	width: 40px;
+	padding: 0;
+	padding-left: 5px;
+	line-height: 0;
+	background-color: red;
+	color: #fff;
+	cursor: pointer;
+	font-size: 24px;
+}
+.logo .search_line .search_hot{
+	padding-top: 10px;
+}
+.logo .search_line .search_hot a{
+	margin-right: 10px;
+}
+.logo .search_line .search_hot a:hover{
+	color: red;
+	text-decoration: underline;
+}
+.logo .search_line .search_hot a:last-child{
+	float: right;
+	margin-right: 0;
+}
+.logo .user_line{
+	overflow: hidden;
+}
+.logo .user_line a{
+	float: left;
+	border: 2px solid #ccc;
+	padding: 10px;
+	background-color: #f2f2f2;
+	font-size: 14px;
+}
+.logo .user_line a:first-child{
+	border-color: red;
+	color: #fff;
+	background-color: red;
+}
+.logo .user_line a:first-child .icon-cart{
+	font-size: 12px;
+}
+.logo .user_line a:first-child:hover{
+	color: red;
+	background-color: #f2f2f2;
+	border-color: #ccc;
+}
+.logo .user_line a:last-child{
+	border-left: none;
+	color: #646464;
+}
+.logo .user_line a:last-child:hover{
+	color: red;
+}
+.main_container{
+	width: 100%;
+}
+.main{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.main .classify{
+	position: relative;
+	float: left;
+	z-index: 10;
+}
+.main .classify > span{
+	color: #fff;
+	background-color: red;
+	padding: 10px;
+	display: block;
+	width: 180px;
+	font-size: 16px;
+	text-align: center;
+}
+.main .classify > ul{
+	width: 200px;
+	background-color: #f2f2f2;
+	font-size: 14px;
+}
+.main .classify > ul > li{
+	padding: 10px;
+	border: 2px solid transparent;
+}
+.main .classify > ul > li > a{
+	margin-right: 3px;
+}
+.main .classify > ul > li > a:hover{
+	text-decoration: underline;
+	color: red;
+}
+.main .classify > ul > li .icon-arrow-right2{
+	float: right;
+	font-size: 12px;
+}
+.main .classify > ul > li .space{
+	width: 10px;
+	height: 34px;
+	float: right;
+	margin-right: -18px;
+	margin-top: -10px;
+	position: relative;
+	z-index: 1;
+	background-color: transparent;
+}
+.main .classify .classify_detail{
+	position: absolute;
+	width: 596px;
+	min-height: 528px;
+	border: 2px solid red;
+	top: -2px;
+	left: 200px;
+	background-color: #fff;
+	padding: 0 20px;
+	font-size: 12px;
+	display: none;
+}
+.main .classify .classify_detail a{
+	color: #666;
+}
+.main .classify .classify_detail .classify_detail_item{
+	border-bottom: 1px dotted red;
+	overflow: hidden;
+	padding: 10px 0;
+	line-height: 30px;
+}
+.main .classify .classify_detail .classify_detail_item:last-child{
+	border-bottom: none;
+}
+.main .classify .classify_detail .classify_detail_item > div{
+	float: left;
+	width: 80px;
+	text-align: right;
+	margin-right: 20px;
+}
+.main .classify .classify_detail .classify_detail_item > div a{
+	color: red;
+}
+.main .classify .classify_detail .classify_detail_item > div a:hover{
+	text-decoration: underline;
+}
+.main .classify .classify_detail .classify_detail_item > ul{
+	float: left;
+	width: 480px;
+}
+.main .classify .classify_detail .classify_detail_item > ul > li{
+	float: left;
+}
+.main .classify .classify_detail .classify_detail_item > ul > li:after{
+	content: "";
+	border-left: 1px solid #ccc;
+	margin: 0 10px;
+}
+.main .classify .classify_detail .classify_detail_item > ul > li a:hover{
+	color: red;
+	text-decoration: underline;
+}
+.main .switch_pic{
+	width: 750px;
+	float: left;
+	position: relative;
+	z-index: 1;
+	height: 315px;
+	background: url("../images/default.gif") no-repeat center center #efefef;
+}
+.main .switch_pic .switch{
+	width: 100%;
+}
+.main .switch_pic .switch > ul li{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.main .switch_pic .switch > ul li img{
+	display: none;
+	opacity: 0;
+}
+.main .switch_pic > a{
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 50px;
+	position: absolute;
+	z-index: 10;
+	top: 50%;
+	margin-top: -25px;
+	opacity: 0.5;
+	display: none;
+}
+.main .switch_pic > a:hover{
+	opacity: 1;
+}
+.main .switch_pic #circle-left{
+	left: 10px;
+}
+.main .switch_pic #circle-right{
+	right: 10px;
+}
+.main .switch_pic > ul{
+	position: absolute;
+	z-index: 10;
+	bottom: 10px;
+	right: 10px;
+}
+.main .switch_pic > ul li{
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background-color: #ccc;
+	float: left;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.main .switch_pic > ul li.active{
+	background-color: red;
+}
+.main .ranking_list{
+	float: left;
+	width: 250px;
+	position: relative;
+}
+.main .ranking_list > h3{
+	margin: 10px 0 10px 20px;
+	color: #d72832;
+	font-size: 16px;
+	padding: 10px 10px 10px 25px;
+	background: url("../images/rank.png") no-repeat;
+	background-size: contain;
+}
+.main .ranking_list > ul{
+	width: 228px;
+	border: 1px solid #f2f2f2;
+	height: 472px;
+	padding: 0 10px;
+}
+.main .ranking_list > ul > li{
+	padding: 7px 10px;
+	border-bottom: 1px solid #f2f2f2;
+}
+.main .ranking_list > ul > li:last-child{
+	border-bottom: none;
+}
+.main .ranking_list > ul > li > span:first-child{
+	font-size: 18px;
+	vertical-align: top;
+	margin-right: 5px; 
+}
+.main .ranking_list > ul > li:first-child > span:first-child,
+.main .ranking_list > ul > li:nth-child(2) > span:first-child,
+.main .ranking_list > ul > li:nth-child(3) > span:first-child{
+	display: inline-block;
+	width: 12px;
+	height: 20px;
+}
+.main .ranking_list > ul > li:first-child > span:first-child{
+	background: url("../images/first.png") no-repeat;
+	background-size: contain;
+}
+.main .ranking_list > ul > li:nth-child(2) > span:first-child{
+	background: url("../images/second.png") no-repeat;
+	background-size: contain;
+}
+.main .ranking_list > ul > li:nth-child(3) > span:first-child{
+	background: url("../images/third.png") no-repeat;
+	background-size: contain;
+}
+.main .ranking_list > ul > li a{
+	display: inline-block;
+}
+.main .ranking_list > ul > li > div{
+	/*width: 80px;*/
+	width: 187px;
+	vertical-align: top;
+	/*height: 100px;*/
+	display: inline-block;
+}
+.main .ranking_list > ul > li:last-child > div{
+	width: 178px;
+	/*width: 71px;*/
+}
+.main .ranking_list > ul > li > div > a{
+	width: 100%;
+	vertical-align: top;
+	line-height: 20px;
+	/*height: 60px;*/
+	height: 20px;
+	overflow: hidden;
+}
+.main .ranking_list > ul > li > div > p{
+	font-size: 14px;
+	margin-top: 5px;
+}
+.main .ranking_list > ul > li > div > p.cur_price{
+	color: #d72832;
+	font-weight: bold;
+	display: none;
+}
+.main .ranking_list > ul > li > div > p.ori_price{
+	color: #ccc;
+	text-decoration: line-through;
+	display: none;
+}
+.main .ranking_list > ul > li > a.images{
+	width: 100px;
+	height: 100px;
+	display: none;
+	background: url("../images/default.gif") no-repeat center center #f2f2f2;
+}
+.main .ranking_list > ul > li > a > img{
+	width: 100%;
+	display: none;
+}
+.main .ranking_list > a{
+	color: #5097bc;
+	font-size: 14px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+.main .ranking_list > a:hover{
+	text-decoration: underline;
+}
+.main .new_books{
+	width: 750px;
+	height: 215px;
+	float: left;
+	margin-left: 200px;
+	margin-top: -215px;
+	margin-bottom: 20px;
+	position: relative;
+	z-index: 1;
+}
+.main .new_books .newbooks_container{
+	margin-top: 10px;
+	padding-top: 40px;
+	background: url("../images/newbook_title.png") 10px 0 no-repeat;
+	width: 750px;
+	height: 215px;
+	position: relative;
+	overflow: hidden;
+}
+.main .new_books .newbooks_container > ul{
+	overflow: hidden;
+	width: 3000px;
+	position: absolute;
+	top: 40px;
+	left: 0;
+}
+.main .new_books .newbooks_container > ul > li{
+	float: left;
+}
+.main .new_books .newbooks_container > ul > li > ul > li{
+	float: left;
+	margin: 10px 0 0 35px;
+}
+.main .new_books .newbooks_container > ul > li > ul > li a{
+	display: inline-block;
+}
+.main .new_books .newbooks_container > ul > li > ul > li > a.images{
+	width: 120px;
+	height: 120px;
+	background: url("../images/default.gif") no-repeat center center #f2f2f2;
+}
+.main .new_books .newbooks_container > ul > li > ul > li img{
+	width: 100%;
+	display: none;
+}
+.main .new_books .newbooks_container > ul > li > ul > li > div{
+	width: 80px;
+	vertical-align: top;
+	height: 120px;
+	display: inline-block;
+	margin-top: 10px;
+}
+.main .new_books .newbooks_container > ul > li > ul > li > div > a{
+	width: 100%;
+	vertical-align: top;
+	line-height: 20px;
+	height: 40px;
+	overflow: hidden;
+	font-size: 14px;
+}
+.main .new_books .newbooks_container > ul > li > ul > li > div > p{
+	font-size: 14px;
+	margin-top: 5px;
+}
+.main .new_books .newbooks_container > ul > li > ul > li > div > p.cur_price{
+	color: #d72832;
+	font-weight: bold;
+}
+.main .new_books .newbooks_container > ul > li > ul > li > div > p.ori_price{
+	color: #ccc;
+	text-decoration: line-through;
+}
+.main .new_books .btn{
+	position: absolute;
+	width: 25px;
+	height: 50px;
+	top: 50%;
+	margin-top: -25px;
+	cursor: pointer;
+	opacity: 0.5;
+	background: url("../images/newbook_btn.png") 0 0 no-repeat #ccc;
+}
+.main .new_books .btn:hover{
+	opacity: 1;
+}
+.main .new_books #newbook_left{
+	left: 10px;
+}
+.main .new_books #newbook_right{
+	right: 10px;
+	background-position: -26px 0;
+}
+.main .new_books > ul{
+	position: absolute;
+	width: 70px;
+	bottom: 10px;
+	left: 50%;
+	margin-left: -35px;
+}
+.main .new_books > ul > li{
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #ccc;
+	margin-left: 10px;
+	float: left;
+	cursor: pointer;
+}
+.main .new_books > ul > li:first-child{
+	margin-left: 0;
+}
+.main .new_books > ul > li.active{
+	background-color: red;
+}
+.main .recommend{
+	width: 100%;
+	padding-top: 10px;
+	clear: both;
+	background: url("../images/recommend_title.png") no-repeat;
+}
+.main .recommend > ul{
+	overflow: hidden;
+	padding-left: 200px;
+	position: relative;
+	top: 1px;
+}
+.main .recommend > ul > li{
+	float: left;
+	padding: 0 15px;
+	height: 34px;
+	line-height: 34px;
+	margin-right: 30px;
+	font-size: 14px;
+	color: #666;
+	cursor: pointer;
+	border: 2px solid transparent;
+	border-bottom: none;
+	border-radius: 6px 6px 0 0;
+	position: relative;
+	z-index: 9;
+}
+.main .recommend > ul > li.active{
+	border-color: red;
+	color: red;
+	font-weight: bold;
+	background-color: #fff;
+}
+.main .recommend div,
+.main .like div{
+	width: 100%;
+	border-top: 1px solid red;
+	padding-top: 20px;
+	display: none;
+}
+.main .recommend div > ul,
+.main .like div > ul{
+	overflow: hidden;
+}
+.main .recommend div > ul > li,
+.main .like div > ul > li{
+	float: left;
+	width: 150px;
+	margin: 0 60px 40px 0;
+}
+.main .recommend div > ul > li:nth-child(6n),
+.main .like div > ul > li:nth-child(6n){
+	margin-right: 0;
+}
+.main .recommend div > ul > li a,
+.main .like div > ul > li a{
+	display: block;
+	width: 100%;
+	font-size: 14px;
+}
+.main .recommend div > ul > li a:first-child,
+.main .like div > ul > li a:first-child{
+	background: url("../images/default.gif") no-repeat center center #f2f2f2;
+	width: 150px;
+	height: 150px;
+}
+.main .recommend div > ul > li img,
+.main .like div > ul > li img{
+	display: none;
+	opacity: 0;
+}
+.main .recommend div > ul > li a:nth-child(2),
+.main .like div > ul > li a:nth-child(2){
+	height: 24px;
+	line-height: 24px;
+	overflow: hidden;
+	padding: 0 10px;
+	width: 130px;
+	margin-top: 10px;
+}
+.main .recommend div > ul > li .author,
+.main .like div > ul > li .author{
+	color: #aaa;
+	font-size: 14px;
+	height: 24px;
+	line-height: 24px;
+	padding: 0 10px;
+}
+.main .recommend div > ul > li .price,
+.main .like div > ul > li .price{
+	padding: 0 10px;
+	font-size: 14px;
+	line-height: 24px;
+	height: 24px;
+}
+.main .recommend div > ul > li .price .cur_price,
+.main .like div > ul > li .price .cur_price{
+	color: #d72832;
+	font-weight: bold;
+	margin-right: 10px;
+}
+.main .recommend div > ul > li .price .ori_price,
+.main .like div > ul > li .price .ori_price{
+	color: #ccc;
+	text-decoration: line-through;
+}
+.main .like{
+	width: 100%;
+	padding-top: 46px;
+	background: url("../images/like_title.png") no-repeat;
+}
+.main .like div{
+	display: block;
+}

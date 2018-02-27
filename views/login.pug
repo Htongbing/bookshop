@@ -1,0 +1,34 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title #{title}
+    link(rel='stylesheet', href='/style/reset.css')
+    link(rel='stylesheet', href='/style/fonts.css')
+    link(rel='stylesheet', href='/style/login.css')
+  body
+    header
+      div
+        a(href='bookshop.html')
+          img(src='/images/logo.jpg')
+    .login_box
+      .login
+        p.login_method 密码登陆
+        .login_info
+          span.icon.icon-user
+          input#user(type='text')
+          label.placeholder(for='user') 邮箱/昵称/手机号
+          span#clear_user.icon-cross
+        p#user_tip.tip 请输入邮箱/昵称/手机号
+        .login_info
+          span.icon.icon-lock
+          input#password(type='password')
+          label.placeholder(for='password') 密码
+        p#password_tip.tip 请填写长度为6-20个字符的密码
+        .auto_login
+          a(href='javascript:;') 忘记密码？
+          input#autologin(type='checkbox')
+          label(for='autologin') 记住密码
+        button#submit.btn(type='submit') 登 录
+        a(href='register-phone.html') 立即注册
+    script(src='js/login.js')

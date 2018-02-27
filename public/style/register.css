@@ -1,0 +1,136 @@
+body{
+	font-size: 14px;
+	color: #666;
+	font-family: "Microsoft YaHei";
+	background-color: #fff;
+	user-select: none;
+}
+::-ms-clear, ::-ms-reveal{
+	display: none;
+}
+img{
+	display: block;
+	border: none;
+}
+input, button{
+	outline: none;
+	border: none;
+}
+ul, li{
+	list-style: none;
+}
+a{
+	color: #000;
+	text-decoration: none;
+}
+a:link, a:visited, a:hover, a:active{
+	color: #000;
+	text-decoration: none;
+}
+header{
+	width: 100%;
+	border-bottom: 4px solid red;
+}
+header div{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+header a{
+	display: block;
+	width: 200px;
+	overflow: hidden;
+}
+.register_box{
+	width: 800px;
+	margin: 20px auto;
+	position: relative;
+}
+.register_box > p{
+	position: absolute;
+	font-size: 12px;
+	top: 45px;
+	right: 20px;
+	z-index: 9;
+}
+.register_box > p > a{
+	color: blue;
+	margin-right: 10px;
+}
+.register_box > p > a:hover{
+	text-decoration: underline;
+}
+.register_box ul{
+	overflow: hidden;
+	margin-left: 20px;
+	position: relative;
+	top: 20px;
+}
+.register_box ul li{
+	float: left;
+	margin-right: 20px;
+}
+.register_box ul li.active > a,
+.register_box ul li > a:hover{
+	background-color: red;
+	color: #fff;
+}
+.register_box ul li > a{
+	display: block;
+	height: 56px;
+	line-height: 56px;
+	padding: 0 20px;
+	font-size: 16px;
+	color: red;
+	background-color: #fff;
+	font-weight: bold;
+	border-radius: 12px;
+	border: 2px solid red;
+}
+.register_box ul li > a span{
+	margin-right: 10px;
+	font-size: 20px;
+	vertical-align: text-bottom;
+}
+.register{
+	border: 2px solid red;
+	padding: 60px 0 40px;
+}
+.register > div{
+	width: 400px;
+	margin: 0 auto;
+}
+.register > div > label{
+	float: left;
+	width: 56px;
+	text-align: right;
+	margin-right: 10px;
+	padding: 10px 0; 
+}
+.register > div > input{
+	float: left;
+	border: 1px solid #e6e6e6;
+	padding: 10px;
+	border-radius: 2px;
+	width: 312px;
+	color: #333;
+}
+.register > div > p{
+	font-size: 12px;
+	line-height: 30px;
+	color: #787878;
+	clear: both;
+	margin-left: 74px;
+}
+.register > div > button{
+	padding: 0 20px;
+	background-color: red;
+	color: #fff;
+	font-size: 20px;
+	height: 60px;
+	line-height: 60px;
+	border-radius: 30px;
+	cursor: pointer;
+	width: 200px;
+	margin: 20px 0 0 100px;
+}
