@@ -1,9 +1,4 @@
 ~(function(){
-	// var area_list = document.getElementById("area_list");
-	// var oUl = area_list.getElementsByTagName("ul")[0];
-	// var oA = area_list.getElementsByTagName("a")[0];
-	// var areas = oUl.getElementsByTagName("li");
-	// var cur_area = document.getElementById("cur_area");
 	var searchClassify = document.getElementById("search_classify");
 	var searchClassifyLis = searchClassify.getElementsByTagName("li");
 	var classify = document.getElementById("classify");
@@ -35,10 +30,6 @@
 	var likeDiv = like.getElementsByTagName("div")[0];
 	var likeLis = like.getElementsByTagName("li");
 
-	// area_list.addEventListener("mouseenter", appearArea);
-
-	// area_list.addEventListener("mouseleave", disappearArea);
-
 	searchClassify.addEventListener("mouseenter", function(){
 		this.getElementsByTagName("ul")[0].style.display = "block";
 	});
@@ -48,12 +39,6 @@
 	});
 
 	~(function(){
-		// for(var i = 0; i < areas.length; i++){
-		// 	areas[i].onclick = function(){
-		// 		disappearArea();
-		// 		cur_area.innerText = this.innerText;
-		// 	};
-		// };
 		for(i = 0; i < searchClassifyLis.length; i++){
 			searchClassifyLis[i].onclick = function(){
 				searchClassify.getElementsByTagName("ul")[0].style.display = "none";
@@ -333,20 +318,6 @@
 	}, 500);
 
 	timer = window.setInterval(slidePic, 3000);
-
-	// function appearArea(){
-	// 	oUl.style.display = "block";
-	// 	oA.style.borderColor = "#e6e6e6";
-	// 	oA.style.backgroundColor = "#fff";
-	// 	oA.lastElementChild.className = "icon-arrow-up2";
-	// };
-
-	// function disappearArea(){
-	// 	oUl.style.display = "none";
-	// 	oA.style.borderColor = "transparent";
-	// 	oA.style.backgroundColor = "transparent";
-	// 	oA.lastElementChild.className = "icon-arrow-down2";
-	// };
 
 	function delayImg(imgs, move, fade){
 		for(var i = 0; i < imgs.length; i++){

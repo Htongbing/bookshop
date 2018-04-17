@@ -36,7 +36,7 @@ header{
 }
 .tool{
 	width: 100%;
-	max-width: 1200px;
+	width: 1200px;
 	margin: 0 auto;
 	height: 34px;
 	line-height: 34px;
@@ -91,7 +91,7 @@ header{
 }
 .logo{
 	width: 100%;
-	max-width: 1200px;
+	width: 1200px;
 	margin: 0 auto;
 	display: flex;
 	align-items: center;
@@ -219,7 +219,7 @@ header{
 }
 .main{
 	width: 100%;
-	max-width: 1200px;
+	width: 1200px;
 	margin: 0 auto;
 }
 .main .classify{

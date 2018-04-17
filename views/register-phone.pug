@@ -9,34 +9,34 @@ html(lang='en')
   body
     header
       div
-        a(href='bookshop.html')
+        a(href='/')
           img(src='/images/logo.jpg')
     .register_box
       p
         | 已有帐号？
-        a(href='login.html') 立即登录
-        a(href='bookshop.html') 回到首页
+        a(href='/login') 立即登录
+        a(href='/') 回到首页
       ul
         li.active
           a(href='javascript:;')
             span.icon-mobile
             | 手机注册
         li
-          a(href='register-mail.html')
+          a(href='/register/mail')
             span.icon-mail3
             | 邮箱注册
         li
-          a(href='register-common.html')
+          a(href='/register/common')
             span.icon-user
             | 普通账号注册
-      .register
+      form.register(method="POST", action="/user/signup")
         div
           label(for='user_id') 手机号码
-          input#user_id(type='text', placeholder='请输入你的手机号')
+          input#user_id(type='text', placeholder='请输入你的手机号', name="user[username]")
           p 手机号可用于登录、找回密码、接收订单通知等服务
         div
           label(for='user_password') 登录密码
-          input#user_password(type='password')
+          input#user_password(type='password', name="user[password]")
           p 密码为6-20个字符，可由英文、数字及符号组成
         div
           label(for='user_repassword') 确认密码
@@ -47,4 +47,4 @@ html(lang='en')
           input#vcode(type='password', placeholder='请输入验证码')
           p 请填写图片中的字符，不区分大小写
         div
-          button 立即注册
+          button(type="submit") 立即注册

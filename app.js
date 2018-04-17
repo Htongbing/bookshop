@@ -1,16 +1,17 @@
-let express = require("express"),
-	port = 3000,
-	path = require("path"),
-	app = express(),
-	mongoose = require("mongoose"),
-	Book = require("./models/book.js"),
-	bodyParser = require("body-parser"),
-	_ = require("underscore");
+let express = require("express");
+let	port = 3000;
+let	path = require("path");
+let	app = express();
+let	mongoose = require("mongoose");
+let	Book = require("./models/book.js");
+let User = require("./models/user.js");
+let	bodyParser = require("body-parser");
+let	_ = require("underscore");
 
 mongoose.connect("mongodb://localhost:27017/bookshop");
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set("views", "./views");
 app.set("view engine", "pug");
 app.listen(port);
@@ -20,6 +21,31 @@ console.log("Server created successful and listening for port " + port + ".");
 app.get("/", function(req, res){
 	res.render("index", {
 		title: "首页"
+	});
+});
+
+app.post("/user/signup", function(req, res){
+	let _user = req.body.user;
+
+	User.findOne({
+		username: _user.username
+	}, function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		if(data){
+			res.redirect("/");
+			return;
+		};
+		let user = new User(_user);
+		user.save(function(err, data){
+			if(err){
+				console.log(err);
+				return;
+			};
+			res.redirect("/login");
+		});
 	});
 });
 
@@ -106,7 +132,7 @@ app.get("/admin/book", function(req, res){
 });
 
 app.get("/admin/update/:id", function(req,res){
-	var id = req.params.id;
+	let id = req.params.id;
 	if(id){
 		Book.findById(id, function(err, book){
 			if(err){
