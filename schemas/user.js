@@ -33,6 +33,18 @@ UserSchema.pre("save", function(next){
 	});
 });
 
+UserSchema.methods = {
+	comparePassword: function(password, callback){
+		bcrypt.compare(password, this.password, function(err, isMatch){
+			if(err){
+				callback(err);
+				return;
+			};
+			callback(null, isMatch);
+		});
+	}
+};
+
 UserSchema.statics = {
 	fetch: function(cb){
 		return this

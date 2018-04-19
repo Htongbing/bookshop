@@ -12,17 +12,17 @@ html(lang='en')
         a(href='bookshop.html')
           img(src='/images/logo.jpg')
     .login_box
-      .login
+      form(method="POST", action="/user/signin").login
         p.login_method 密码登陆
         .login_info
           span.icon.icon-user
-          input#user(type='text')
+          input#user(type='text', name="user[username]")
           label.placeholder(for='user') 邮箱/昵称/手机号
           span#clear_user.icon-cross
         p#user_tip.tip 请输入邮箱/昵称/手机号
         .login_info
           span.icon.icon-lock
-          input#password(type='password')
+          input#password(type='password', name="user[password]")
           label.placeholder(for='password') 密码
         p#password_tip.tip 请填写长度为6-20个字符的密码
         .auto_login

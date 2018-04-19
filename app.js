@@ -49,6 +49,33 @@ app.post("/user/signup", function(req, res){
 	});
 });
 
+app.post("/user/signin", function(req, res){
+	let user = req.body.user;
+	User.findOne({
+		username: user.username
+	}, function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		if(!data){
+			res.send("用户不存在");
+			return;
+		};
+		data.comparePassword(user.password, function(err, isMatch){
+			if(err){
+				console.log(err);
+				return;
+			};
+			if(!isMatch){
+				res.send("密码错误");
+				return;
+			};
+			res.redirect("/");
+		});
+	});
+});
+
 app.get("/book/:id", function(req, res){
 	let id = req.params.id;
 	Book.findById(id, function(err, book){
