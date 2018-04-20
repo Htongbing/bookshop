@@ -6,12 +6,21 @@ let	mongoose = require("mongoose");
 let	Book = require("./models/book.js");
 let User = require("./models/user.js");
 let	bodyParser = require("body-parser");
+let cookieParser = require("cookie-parser");
+let session = require("express-session");
 let	_ = require("underscore");
 
 mongoose.connect("mongodb://localhost:27017/bookshop");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(session({
+	name: "user",
+	secret: "bookshop",
+	resave: false,
+	saveUninitialized: true
+}));
 app.set("views", "./views");
 app.set("view engine", "pug");
 app.listen(port);
@@ -19,6 +28,7 @@ app.listen(port);
 console.log("Server created successful and listening for port " + port + ".");
 
 app.get("/", function(req, res){
+	console.log(req.session.user);
 	res.render("index", {
 		title: "首页"
 	});
@@ -71,6 +81,7 @@ app.post("/user/signin", function(req, res){
 				res.send("密码错误");
 				return;
 			};
+			req.session.user = user;
 			res.redirect("/");
 		});
 	});
