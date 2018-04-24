@@ -9,7 +9,7 @@ html(lang='en')
   body
     header
       div
-        a(href='bookshop.html')
+        a(href='/')
           img(src='/images/logo.jpg')
     .login_box
       form(method="POST", action="/user/signin").login
@@ -25,10 +25,6 @@ html(lang='en')
           input#password(type='password', name="user[password]")
           label.placeholder(for='password') 密码
         p#password_tip.tip 请填写长度为6-20个字符的密码
-        .auto_login
-          a(href='javascript:;') 忘记密码？
-          input#autologin(type='checkbox')
-          label(for='autologin') 记住密码
         button#submit.btn(type='submit') 登 录
-        a(href='register-phone.html') 立即注册
-    script(src='js/login.js')
+        a(href='/register/phone') 立即注册
+    script(src='/js/login.js')

@@ -12,23 +12,23 @@ html(lang='en')
         #tool.tool
           ul.operate
             li
-              a(href='javascript:;')
+              a(href='/shopping')
                 span.icon-cart
                 | 购物车
                 b.cart_items_num 0
             li
-              a(href='javascript:;') 我的订单
+              a(href='/user') 我的订单
             li
-              a(href='user.html') 我的帐号
+              a(href='/user') 我的帐号
           .welcome
             span
               | 欢迎光临，请
-              a(href='login.html') 登录
+              a(href='/login') 登录
               |  没有账号？点击
-              a(href='register-phone.html') 注册
+              a(href='/register/phone') 注册
       .logo_line
         .logo
-          a(href='bookshop.html')
+          a(href='/')
             img(src='/images/logo.jpg')
           .search_line
             .search
@@ -54,11 +54,11 @@ html(lang='en')
               a(href='javascript:;') 使女的故事
               a(href='javascript:;') 高级搜索
           .user_line
-            a.user_cart(href='javascript:;')
+            a.user_cart(href='/shopping')
               span.icon-cart
               | 						购物车
               b.cart_items_num 0
-            a.user_indent(href='javascript:;')
+            a.user_indent(href='/user')
               | 我的订单
       // logo、搜索栏结束
     .main_container

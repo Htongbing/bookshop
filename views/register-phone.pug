@@ -16,7 +16,7 @@ html(lang='en')
         | 已有帐号？
         a(href='/login') 立即登录
         a(href='/') 回到首页
-      ul
+      ul#list
         li.active
           a(href='javascript:;')
             span.icon-mobile
@@ -43,8 +43,5 @@ html(lang='en')
           input#user_repassword(type='password')
           p 请再次输入密码
         div
-          label(for='vcode') 验证码
-          input#vcode(type='password', placeholder='请输入验证码')
-          p 请填写图片中的字符，不区分大小写
-        div
-          button(type="submit") 立即注册
+          button#submit(type="submit") 立即注册
+    script(src='/js/register.js')

@@ -12,20 +12,27 @@ html(lang='en')
         #tool.tool
           ul.operate
             li
-              a(href='javascript:;')
+              a(href='/shopping')
                 span.icon-cart
                 | 购物车
                 b.cart_items_num 0
             li
-              a(href='javascript:;') 我的订单
+              a(href='/user') 我的订单
             li
-              a(href='user.pug') 我的帐号
+              a(href='/user') 我的帐号
           .welcome
             span
-              | 欢迎光临，请
-              a(href='/login') 登录
-              |  没有账号？点击
-              a(href='/register/phone') 注册
+              if user
+                | 您好，#{user.username}&nbsp;
+                a(href="/logout") [注销]
+              else if rootUser
+                | 您好，#{rootUser.username}&nbsp;
+                a(href="/logout") [注销]
+              else
+                | 欢迎光临，请
+                a(href='/login') 登录
+                |  没有账号？点击
+                a(href='/register/phone') 注册
       .logo_line
         .logo
           a(href='/')

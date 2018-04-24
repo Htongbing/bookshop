@@ -8,9 +8,11 @@ let User = require("./models/user.js");
 let	bodyParser = require("body-parser");
 let cookieParser = require("cookie-parser");
 let session = require("express-session");
+let mongoStore = require("connect-mongo")(session);
 let	_ = require("underscore");
+let dbUrl = "mongodb://localhost:27017/bookshop";
 
-mongoose.connect("mongodb://localhost:27017/bookshop");
+mongoose.connect(dbUrl);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,7 +21,11 @@ app.use(session({
 	name: "user",
 	secret: "bookshop",
 	resave: false,
-	saveUninitialized: true
+	saveUninitialized: true,
+	store: new mongoStore({
+		url: dbUrl,
+		collection: "sessions"
+	})
 }));
 app.set("views", "./views");
 app.set("view engine", "pug");
@@ -27,10 +33,48 @@ app.listen(port);
 
 console.log("Server created successful and listening for port " + port + ".");
 
+app.use(function(req, res, next){
+	res.locals.user = req.session.user;
+	next();
+});
+
 app.get("/", function(req, res){
 	console.log(req.session.user);
 	res.render("index", {
 		title: "首页"
+	});
+});
+
+app.get("/logout", function(req, res){
+	delete req.session.user;
+	delete res.locals.user;
+	res.redirect("/");
+});
+
+app.get("/user/register", function(req, res){
+	let username = req.query.username;
+	let result = {
+		status: 0,
+		msg: "账号已被注册"
+	};
+	
+	User.findOne({
+		username: username
+	}, function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+		if(data){
+			res.end(JSON.stringify(result));
+			return;
+		};
+		result = {
+			status: 1,
+			msg: "可以使用此账号"
+		};
+		res.end(JSON.stringify(result));
 	});
 });
 
