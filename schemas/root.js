@@ -2,8 +2,8 @@ let mongoose = require("mongoose");
 let bcrypt = require("bcryptjs");
 let SALT_WORK_FACTOR = 10;
 
-let UserSchema = new mongoose.Schema({
-	username: {
+let RootSchema = new mongoose.Schema({
+	rootname: {
 		unique: true,
 		type: String
 	},
@@ -11,30 +11,26 @@ let UserSchema = new mongoose.Schema({
 	createTime: {
 		type: Date,
 		default: Date.now()
-	},
-	sex: String,
-	telephone: Number,
-	address: String
+	}
 });
 
-UserSchema.pre("save", function(next){
-	let user = this;
-	console.log(this.password);
+RootSchema.pre("save", function(next){
+	let rootuser = this;
 	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
 		if(err){
 			return next(err);
 		};
-		bcrypt.hash(user.password, salt, function(err, hash){
+		bcrypt.hash(rootuser.password, salt, function(err, hash){
 			if(err){
 				return next(err);
 			};
-			user.password = hash;
+			rootuser.password = hash;
 			next();
 		});
 	});
 });
 
-UserSchema.methods = {
+RootSchema.methods = {
 	comparePassword: function(password, callback){
 		bcrypt.compare(password, this.password, function(err, isMatch){
 			if(err){
@@ -46,7 +42,7 @@ UserSchema.methods = {
 	}
 };
 
-UserSchema.statics = {
+RootSchema.statics = {
 	fetch: function(cb){
 		return this
 			.find({})
@@ -60,4 +56,4 @@ UserSchema.statics = {
 	}
 };
 
-module.exports = UserSchema;
+module.exports = RootSchema;

@@ -1,10 +1,11 @@
 let express = require("express");
-let	port = 3000;
+let	port = 2222;
 let	path = require("path");
 let	app = express();
 let	mongoose = require("mongoose");
 let	Book = require("./models/book.js");
 let User = require("./models/user.js");
+let Root = require("./models/root.js");
 let	bodyParser = require("body-parser");
 let cookieParser = require("cookie-parser");
 let session = require("express-session");
@@ -39,9 +40,14 @@ app.use(function(req, res, next){
 });
 
 app.get("/", function(req, res){
-	console.log(req.session.user);
 	res.render("index", {
 		title: "首页"
+	});
+});
+
+app.get("/admin/login", function(req, res){
+	res.render("login", {
+		title: "管理员登录"
 	});
 });
 

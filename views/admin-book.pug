@@ -51,16 +51,20 @@ html(lang='en')
           option(value='16开') 16开
           option(value='32开') 32开
           option(value='64开') 64开
+          option(value='128开') 128开
       .row
         label.label 纸张
         select#book_detail_pager.select(name='book[pager]', value=book.pager)
           option(value='')
           option(value='胶版纸') 胶版纸
+          option(value='轻型纸') 轻型纸
       .row
         label.label 包装
         select#book_detail_package.select(name='book[package]', value=book.package)
           option(value='')
           option(value='平装-胶订') 平装-胶订
+          option(value='精装') 精装
+          option(value='盒装') 盒装
       .row
         label.label 是否套装
         select#book_detail_suit.select(name='book[suit]', value=book.suit)
@@ -74,8 +78,16 @@ html(lang='en')
         select.select
           option(value='全部') 全部
         select#book_detail_classifyOne_first.select(name='book[classify][first]')
+          option(value='网络文学') 网络文学
           option(value='小说') 小说
-        select#book_detail_classifyOne_second.select(name='book[classify][second]')
-          option(value='侦探/悬疑/推理') 侦探/悬疑/推理
+          option(value='文艺') 文艺
+          option(value='经管') 经管
+          option(value='社科') 社科
+          option(value='生活') 生活
+          option(value='教育/科技') 教育/科技
+          option(value='童书/进口书') 童书/进口书
+        select#book_detail_classifyOne_second.select.hid(name='book[classify][second]')
       .row
         button#submit.submit 提&nbsp;&nbsp;&nbsp;交
+    script(src="/js/utils.js")
+    script(src="/js/admin-book.js")

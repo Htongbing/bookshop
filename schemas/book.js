@@ -19,6 +19,10 @@ let BookSchema = new mongoose.Schema({
 	suit: String,
 	ISBN: Number,
 	classify: Object,
+	sale: {
+		type: Number,
+		default: 0
+	},
 	meta: {
 		createAt: {
 			type: Date,

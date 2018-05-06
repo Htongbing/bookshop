@@ -66,9 +66,11 @@ html(lang='en')
           li
             a(href='/list') 全部
             | &gt;
-            - for(var key in book.classify)
             li
-              a(href='/list') #{book.classify[key]}
+              a(href='/list') #{book.classify.first}
+              | &gt;
+            li
+              a(href='/list') #{book.classify.second}
               | &gt;
           li #{book.name}
         .detail
