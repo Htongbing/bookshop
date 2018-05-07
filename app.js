@@ -152,8 +152,55 @@ app.get("/book/:id", function(req, res){
 });
 
 app.get("/list", function(req, res){
-	res.render("list", {
-		title: "列表页"
+	let condition = {};
+	let tip = "";
+	let bookName = "";
+	let params = req.query;
+	if(params.search){
+		let reg = new RegExp(params.search);
+		condition = {
+			name: reg
+		};
+		tip = "搜索";
+		bookName = params.search;
+	};
+	if(params.first){
+		condition = {
+			"classify.first": params.first
+		};
+		tip = "分类";
+		bookName = params.first;
+		if(params.second){
+			condition["classify.second"] = params.second;
+			bookName = {
+				first: params.first,
+				second: params.second
+			};
+		};
+	};
+	Book.findByCondition(condition, function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		res.render("list", {
+			title: tip + "列表",
+			data: data,
+			bookName: bookName
+		});
+	});
+});
+
+app.get("/list/all", function(req, res){
+	Book.fetch(function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		res.render("list", {
+			title: "所有图书",
+			data: data
+		});
 	});
 });
 

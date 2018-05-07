@@ -55,6 +55,11 @@ BookSchema.statics = {
 		return this
 			.findOne({"_id": id})
 			.exec(cb);
+	},
+	findByCondition: function(condition, cb){
+		return this
+			.find(condition)
+			.exec(cb);
 	}
 };
 

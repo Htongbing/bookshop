@@ -25,9 +25,6 @@ html(lang='en')
               if user
                 | 您好，#{user.username}&nbsp;
                 a(href="/logout") [注销]
-              else if rootUser
-                | 您好，#{rootUser.username}&nbsp;
-                a(href="/logout") [注销]
               else
                 | 欢迎光临，请
                 a(href='/login') 登录
@@ -39,7 +36,7 @@ html(lang='en')
             img(src='/images/logo.jpg')
           .search_line
             .search
-              input(type='text')
+              input#search_con(type='text')
               #search_classify
                 span 全部分类
                 span.icon
@@ -50,7 +47,7 @@ html(lang='en')
                     a(href='javascript:;') 图书
                   li
                     a(href='javascript:;') 电子书
-              button
+              button#search
                 span.icon-search
             .search_hot
               | 热搜：
@@ -80,9 +77,9 @@ html(lang='en')
               span.icon-arrow-right2
               .classify_detail
                 .classify_detail_item
-                  div
-                    a(href='javascript:;') 网络文学
-                  ul
+                  div.firstClass
+                    a(href='/list?first=网络文学', target="blank") 网络文学
+                  ul.secondClass
                     li
                       a(href='javascript:;') 男频
                     li
@@ -100,9 +97,9 @@ html(lang='en')
                     li
                       a(href='javascript:;') 古装言情
                 .classify_detail_item
-                  div
-                    a(href='javascript:;') 小说
-                  ul
+                  div.firstClass
+                    a(href='/list?first=小说', target="blank") 小说
+                  ul.secondClass
                     li
                       a(href='javascript:;') 侦探/悬疑/推理
                     li
@@ -116,9 +113,9 @@ html(lang='en')
                     li
                       a(href='javascript:;') 外国小说
                 .classify_detail_item
-                  div
-                    a(href='javascript:;') 文艺
-                  ul
+                  div.firstClass
+                    a(href='/list?first=文艺', target="blank") 文艺
+                  ul.secondClass
                     li
                       a(href='javascript:;') 传记
                     li
@@ -134,9 +131,9 @@ html(lang='en')
                     li
                       a(href='javascript:;') 文学评论与鉴赏
                 .classify_detail_item
-                  div
-                    a(href='javascript:;') 经管
-                  ul
+                  div.firstClass
+                    a(href='/list?first=经管', target="blank") 经管
+                  ul.secondClass
                     li
                       a(href='javascript:;') 成功/励志
                     li
@@ -146,9 +143,9 @@ html(lang='en')
                     li
                       a(href='javascript:;') 经济
                 .classify_detail_item
-                  div
-                    a(href='javascript:;') 社科
-                  ul
+                  div.firstClass
+                    a(href='/list?first=社科', target="blank") 社科
+                  ul.secondClass
                     li
                       a(href='javascript:;') 历史
                     li
@@ -164,9 +161,9 @@ html(lang='en')
                     li
                       a(href='javascript:;') 法律
                 .classify_detail_item
-                  div
-                    a(href='javascript:;') 生活
-                  ul
+                  div.firstClass
+                    a(href='/list?first=生活', target="blank") 生活
+                  ul.secondClass
                     li
                       a(href='javascript:;') 亲子/家教
                     li
@@ -188,9 +185,9 @@ html(lang='en')
                     li
                       a(href='javascript:;') 家庭/家居
                 .classify_detail_item
-                  div
-                    a(href='javascript:;') 教育/科技
-                  ul
+                  div.firstClass
+                    a(href='/list?first=教育/科技', target="blank") 教育/科技
+                  ul.secondClass
                     li
                       a(href='javascript:;') 考试
                     li
@@ -206,9 +203,9 @@ html(lang='en')
                     li
                       a(href='javascript:;') 自然科学
                 .classify_detail_item
-                  div
-                    a(href='javascript:;') 童书/进口书
-                  ul
+                  div.firstClass
+                    a(href='/list?first=童书/进口书', target="blank") 童书/进口书
+                  ul.secondClass
                     li
                       a(href='javascript:;') 儿童文学
                     li
@@ -3373,4 +3370,6 @@ html(lang='en')
                 p.price
                   span.cur_price ¥112.50
                   span.ori_price ¥150.00
+    script(src='/js/utils.js')
+    script(src='/js/header.js')
     script(src='/js/index.js')

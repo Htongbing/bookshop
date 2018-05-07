@@ -22,17 +22,21 @@ html(lang='en')
               a(href='/user') 我的帐号
           .welcome
             span
-              | 欢迎光临，请
-              a(href='/login') 登录
-              |  没有账号？点击
-              a(href='/register/phone') 注册
+              if user
+                | 您好，#{user.username}&nbsp;
+                a(href="/logout") [注销]
+              else
+                | 欢迎光临，请
+                a(href='/login') 登录
+                |  没有账号？点击
+                a(href='/register/phone') 注册
       .logo_line
         .logo
           a(href='/')
             img(src='/images/logo.jpg')
           .search_line
             .search
-              input(type='text')
+              input#search_con(type='text')
               #search_classify
                 span 全部分类
                 span.icon
@@ -43,7 +47,7 @@ html(lang='en')
                     a(href='javascript:;') 图书
                   li
                     a(href='javascript:;') 电子书
-              button
+              button#search
                 span.icon-search
             .search_hot
               | 热搜：

@@ -22,17 +22,21 @@ html(lang='en')
               a(href='/user') 我的帐号
           .welcome
             span
-              | 欢迎光临，请
-              a(href='/login') 登录
-              |  没有账号？点击
-              a(href='/register/phone') 注册
+              if user
+                | 您好，#{user.username}&nbsp;
+                a(href="/logout") [注销]
+              else
+                | 欢迎光临，请
+                a(href='/login') 登录
+                |  没有账号？点击
+                a(href='/register/phone') 注册
       .logo_line
         .logo
           a(href='/')
             img(src='/images/logo.jpg')
           .search_line
             .search
-              input(type='text')
+              input#search_con(type='text')
               #search_classify
                 span 全部分类
                 span.icon
@@ -43,7 +47,7 @@ html(lang='en')
                     a(href='javascript:;') 图书
                   li
                     a(href='javascript:;') 电子书
-              button
+              button#search
                 span.icon-search
             .search_hot
               | 热搜：
@@ -64,13 +68,13 @@ html(lang='en')
       .main
         ul.nav
           li
-            a(href='/list') 全部
+            a(href='/list/all') 全部
             | &gt;
             li
-              a(href='/list') #{book.classify.first}
+              a(href='/list?first=' + book.classify.first) #{book.classify.first}
               | &gt;
             li
-              a(href='/list') #{book.classify.second}
+              a(href='/list?first=' + book.classify.first + '&second=' + book.classify.second) #{book.classify.second}
               | &gt;
           li #{book.name}
         .detail
@@ -86,10 +90,10 @@ html(lang='en')
             .author
               p
                 | 作者：
-                a(href='/list') #{book.author}
+                a(href='javascript:;') #{book.author}
               p
                 | 出版社：
-                a(href='/list') #{book.publish}
+                a(href='javascript:;') #{book.publish}
               p 出版时间：#{book.pubTime}
             .price
               p.cur_price
@@ -165,3 +169,5 @@ html(lang='en')
                 a(href='javascript:;') 5
                 span ···
                 a(href='javascript:;') &gt;
+    script(src='/js/utils.js')
+    script(src='/js/header.js')

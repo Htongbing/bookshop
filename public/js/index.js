@@ -30,6 +30,17 @@
 	var likeDiv = like.getElementsByTagName("div")[0];
 	var likeLis = like.getElementsByTagName("li");
 
+	let firstAry = utils.selectClass("firstClass");
+
+	utils.selectClass("secondClass").forEach((item, index) => {
+		utils.selectTag(item, "a").forEach(newitem => {
+			utils.bindEvent(newitem, "click", function(){
+				let val = "first=" + firstAry[index].innerText + "&second=" + utils.html(newitem);
+				utils.searchFun(val);
+			});
+		});
+	});
+
 	searchClassify.addEventListener("mouseenter", function(){
 		this.getElementsByTagName("ul")[0].style.display = "block";
 	});
@@ -375,4 +386,5 @@
 			i === tempStep ? Lis[i].className = "active" : Lis[i].className = "";
 		};
 	};
+
 })();

@@ -22,17 +22,21 @@ html(lang='en')
               a(href='/user') 我的帐号
           .welcome
             span
-              | 欢迎光临，请
-              a(href='/login') 登录
-              |  没有账号？点击
-              a(href='/register/phone') 注册
+              if user
+                | 您好，#{user.username}&nbsp;
+                a(href="/logout") [注销]
+              else
+                | 欢迎光临，请
+                a(href='/login') 登录
+                |  没有账号？点击
+                a(href='/register/phone') 注册
       .logo_line
         .logo
           a(href='/')
             img(src='/images/logo.jpg')
           .search_line
             .search
-              input(type='text')
+              input#search_con(type='text')
               #search_classify
                 span 全部分类
                 span.icon
@@ -43,7 +47,7 @@ html(lang='en')
                     a(href='javascript:;') 图书
                   li
                     a(href='javascript:;') 电子书
-              button
+              button#search
                 span.icon-search
             .search_hot
               | 热搜：
@@ -63,197 +67,40 @@ html(lang='en')
     .main_container
       .main
         h1.nav
-          a(href='javascript:;') 全部
-          | >
-          span 白金数据
-        ul.list
-          li
-            a.img(href='/detail', title='东野圭吾新作：白金数据')
-              img(src='/images/list1.jpg')
-            p.price
-              span.cur_price ¥24.70
-              span.ori_price
-                | 定价:
-                span ¥42.00
-              span.discount (5.89折)
-            a.title(href='/detail', title='东野圭吾新作：白金数据')
-              | 东野圭吾新作：
-              span.key 白金数据
-            p.author [日]东野圭吾
-            .btn
-              a(href='javascript:;')
-                span.icon-cart
-                | 加入购物车
-              a(href='javascript:;') 收藏
-          li
-            a.img(href='detail.html', title='东野圭吾新作：白金数据')
-              img(src='/images/list1.jpg')
-            p.price
-              span.cur_price ¥24.70
-              span.ori_price
-                | 定价:
-                span ¥42.00
-              span.discount (5.89折)
-            a.title(href='/detail', title='东野圭吾新作：白金数据')
-              | 东野圭吾新作：
-              span.key 白金数据
-            p.author [日]东野圭吾
-            .btn
-              a(href='javascript:;')
-                span.icon-cart
-                | 加入购物车
-              a(href='javascript:;') 收藏
-          li
-            a.img(href='detail.html', title='东野圭吾新作：白金数据')
-              img(src='/images/list1.jpg')
-            p.price
-              span.cur_price ¥24.70
-              span.ori_price
-                | 定价:
-                span ¥42.00
-              span.discount (5.89折)
-            a.title(href='detail.html', title='东野圭吾新作：白金数据')
-              | 东野圭吾新作：
-              span.key 白金数据
-            p.author [日]东野圭吾
-            .btn
-              a(href='javascript:;')
-                span.icon-cart
-                | 加入购物车
-              a(href='javascript:;') 收藏
-          li
-            a.img(href='detail.html', title='东野圭吾新作：白金数据')
-              img(src='/images/list1.jpg')
-            p.price
-              span.cur_price ¥24.70
-              span.ori_price
-                | 定价:
-                span ¥42.00
-              span.discount (5.89折)
-            a.title(href='detail.html', title='东野圭吾新作：白金数据')
-              | 东野圭吾新作：
-              span.key 白金数据
-            p.author [日]东野圭吾
-            .btn
-              a(href='javascript:;')
-                span.icon-cart
-                | 加入购物车
-              a(href='javascript:;') 收藏
-          li
-            a.img(href='detail.html', title='东野圭吾新作：白金数据')
-              img(src='/images/list1.jpg')
-            p.price
-              span.cur_price ¥24.70
-              span.ori_price
-                | 定价:
-                span ¥42.00
-              span.discount (5.89折)
-            a.title(href='detail.html', title='东野圭吾新作：白金数据')
-              | 东野圭吾新作：
-              span.key 白金数据
-            p.author [日]东野圭吾
-            .btn
-              a(href='javascript:;')
-                span.icon-cart
-                | 加入购物车
-              a(href='javascript:;') 收藏
-          li
-            a.img(href='detail.html', title='东野圭吾新作：白金数据')
-              img(src='/images/list1.jpg')
-            p.price
-              span.cur_price ¥24.70
-              span.ori_price
-                | 定价:
-                span ¥42.00
-              span.discount (5.89折)
-            a.title(href='detail.html', title='东野圭吾新作：白金数据')
-              | 东野圭吾新作：
-              span.key 白金数据
-            p.author [日]东野圭吾
-            .btn
-              a(href='javascript:;')
-                span.icon-cart
-                | 加入购物车
-              a(href='javascript:;') 收藏
-          li
-            a.img(href='detail.html', title='东野圭吾新作：白金数据')
-              img(src='/images/list1.jpg')
-            p.price
-              span.cur_price ¥24.70
-              span.ori_price
-                | 定价:
-                span ¥42.00
-              span.discount (5.89折)
-            a.title(href='detail.html', title='东野圭吾新作：白金数据')
-              | 东野圭吾新作：
-              span.key 白金数据
-            p.author [日]东野圭吾
-            .btn
-              a(href='javascript:;')
-                span.icon-cart
-                | 加入购物车
-              a(href='javascript:;') 收藏
-          li
-            a.img(href='detail.html', title='东野圭吾新作：白金数据')
-              img(src='/images/list1.jpg')
-            p.price
-              span.cur_price ¥24.70
-              span.ori_price
-                | 定价:
-                span ¥42.00
-              span.discount (5.89折)
-            a.title(href='detail.html', title='东野圭吾新作：白金数据')
-              | 东野圭吾新作：
-              span.key 白金数据
-            p.author [日]东野圭吾
-            .btn
-              a(href='javascript:;')
-                span.icon-cart
-                | 加入购物车
-              a(href='javascript:;') 收藏
-          li
-            a.img(href='detail.html', title='东野圭吾新作：白金数据')
-              img(src='/images/list1.jpg')
-            p.price
-              span.cur_price ¥24.70
-              span.ori_price
-                | 定价:
-                span ¥42.00
-              span.discount (5.89折)
-            a.title(href='detail.html', title='东野圭吾新作：白金数据')
-              | 东野圭吾新作：
-              span.key 白金数据
-            p.author [日]东野圭吾
-            .btn
-              a(href='javascript:;')
-                span.icon-cart
-                | 加入购物车
-              a(href='javascript:;') 收藏
-          li
-            a.img(href='detail.html', title='东野圭吾新作：白金数据')
-              img(src='/images/list1.jpg')
-            p.price
-              span.cur_price ¥24.70
-              span.ori_price
-                | 定价:
-                span ¥42.00
-              span.discount (5.89折)
-            a.title(href='detail.html', title='东野圭吾新作：白金数据')
-              | 东野圭吾新作：
-              span.key 白金数据
-            p.author [日]东野圭吾
-            .btn
-              a(href='javascript:;')
-                span.icon-cart
-                | 加入购物车
-              a(href='javascript:;') 收藏
-        .pagenum_container
-          .pagenum
-            a(href='javascript:;') &lt;
-            a.active(href='javascript:;') 1
-            a(href='javascript:;') 2
-            a(href='javascript:;') 3
-            a(href='javascript:;') 4
-            a(href='javascript:;') 5
-            span ···
-            a(href='javascript:;') &gt;
+          if bookName
+            if !bookName.second
+              a(href='/list/all') 全部
+              | &gt;
+              span #{bookName}
+            else
+              a(href='/list/all') 全部
+              | &gt;
+              a(href='/list?first=' + bookName.first) #{bookName.first}
+              | &gt;
+              span #{bookName.second}
+          else
+            span 全部
+        if data.length > 0
+          ul.list
+            each item in data
+              li
+                a.img(href='/book/' + item._id, title=item.name)
+                  img(src=item.img)
+                p.price
+                  span.cur_price ¥#{item.price.toFixed(2)}
+                  span.ori_price
+                    | 定价:
+                    span ¥#{item.oriPrice.toFixed(2)}
+                  span.discount (#{(item.price / item.oriPrice * 10).toFixed(2)}折)
+                a.title(href='/book/' + item._id, title=item.name)
+                  | #{item.name}
+                p.author #{item.author}
+                .btn
+                  a(href='javascript:;')
+                    span.icon-cart
+                    | 加入购物车
+                  a(href='javascript:;') 收藏
+        else
+          div.no-result 抱歉，找不到相关图书
+    script(src='/js/utils.js')
+    script(src='/js/header.js')
