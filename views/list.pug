@@ -96,7 +96,7 @@ html(lang='en')
                   | #{item.name}
                 p.author #{item.author}
                 .btn
-                  a(href='javascript:;')
+                  a.add_cart(href='javascript:;', bookId=item._id)
                     span.icon-cart
                     | 加入购物车
                   a(href='javascript:;') 收藏
@@ -104,3 +104,4 @@ html(lang='en')
           div.no-result 抱歉，找不到相关图书
     script(src='/js/utils.js')
     script(src='/js/header.js')
+    script(src='/js/list.js')

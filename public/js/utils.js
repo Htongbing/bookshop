@@ -51,11 +51,34 @@ let utils = (function(){
 				};
 			};
 		};
-		xhr.send(option.data);
+		xhr.send(JSON.stringify(option.data));
 	};
 
 	function searchFun(val){
 		window.open("/list?" + val);
+	};
+
+	function handleCookie(key){
+		let str = document.cookie;
+		let obj = {};
+		if(str){
+			let ary = str.split(";");
+			ary.forEach((item) => {
+				let tarStr = item.replace(/(^\s+)|(\s+$)/g, "");
+				let tarAry = tarStr.split("=");
+				obj[tarAry[0]] = tarAry[1];
+			});
+			return obj[key];
+		};
+		return "";
+	};
+
+	function attr(ele, attr, val){
+		if(!val){
+			return ele.getAttribute(attr);
+		};
+		ele.setAttribute(attr, val);
+		return this;
 	};
 
 	return {
@@ -66,6 +89,8 @@ let utils = (function(){
 		ajax,
 		searchFun,
 		selectClass,
-		selectTag
+		selectTag,
+		handleCookie,
+		attr
 	};
 })();

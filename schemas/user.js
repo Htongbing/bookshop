@@ -19,7 +19,6 @@ let UserSchema = new mongoose.Schema({
 
 UserSchema.pre("save", function(next){
 	let user = this;
-	console.log(this.password);
 	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
 		if(err){
 			return next(err);

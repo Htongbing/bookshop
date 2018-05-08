@@ -97,9 +97,9 @@ html(lang='en')
               p 出版时间：#{book.pubTime}
             .price
               p.cur_price
-                | &yen;#{book.price}
-                span (6.08折)
-              p.ori_price 原价：&yen;#{book.oriPrice}
+                | &yen;#{book.price.toFixed(2)}
+                span (#{(book.price / book.oriPrice * 10).toFixed(2)}折)
+              p.ori_price 原价：&yen;#{book.oriPrice.toFixed(2)}
             .num
               input#buy_num(type='text', value='1')
               a#num_plus(href='javascript:;')
@@ -107,13 +107,13 @@ html(lang='en')
               a#num_minus(href='javascript:;')
                 span.icon-minus
               .sum
-                span.cur_price_sum &yen;#{book.price}
-                span.ori_price_sum &yen;#{book.oriPrice}
+                span.cur_price_sum#cur_price_sum(price=book.price) &yen;#{book.price.toFixed(2)}
+                span.ori_price_sum#ori_price_sum(price=book.oriPrice) &yen;#{book.oriPrice.toFixed(2)}
             .buy
-              a(href='javascript:;')
+              a(href='javascript:;', id="addCart", bookId=book._id)
                 span.icon-cart
                 | 加入购物车
-              a(href='javascript:;') 立即购买
+              a(href='javascript:;', id="buyNow") 立即购买
         .comment
           ul
             li.active 商品详情
@@ -171,3 +171,4 @@ html(lang='en')
                 a(href='javascript:;') &gt;
     script(src='/js/utils.js')
     script(src='/js/header.js')
+    script(src='/js/detail.js')

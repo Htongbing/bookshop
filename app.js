@@ -6,6 +6,7 @@ let	mongoose = require("mongoose");
 let	Book = require("./models/book.js");
 let User = require("./models/user.js");
 let Root = require("./models/root.js");
+let Consumption = require("./models/consumption.js");
 let	bodyParser = require("body-parser");
 let cookieParser = require("cookie-parser");
 let session = require("express-session");
@@ -40,6 +41,9 @@ app.use(function(req, res, next){
 });
 
 app.get("/", function(req, res){
+	if(req.session.user){
+		res.cookie("username", req.session.user.username);
+	};
 	res.render("index", {
 		title: "首页"
 	});
@@ -54,6 +58,7 @@ app.get("/admin/login", function(req, res){
 app.get("/logout", function(req, res){
 	delete req.session.user;
 	delete res.locals.user;
+	res.clearCookie("username");
 	res.redirect("/");
 });
 
@@ -95,17 +100,27 @@ app.post("/user/signup", function(req, res){
 			return;
 		};
 		if(data){
-			res.redirect("/");
+			res.send("用户名已被注册");
 			return;
 		};
 		let user = new User(_user);
+		let consumption = new Consumption({
+			username: _user.username
+		});
 		user.save(function(err, data){
 			if(err){
 				console.log(err);
 				return;
 			};
+			consumption.save(function(err, data){
+				if(err){
+					console.log(err);
+					return;
+				};
+			});
 			res.redirect("/login");
 		});
+		
 	});
 });
 
@@ -134,6 +149,70 @@ app.post("/user/signin", function(req, res){
 			req.session.user = user;
 			res.redirect("/");
 		});
+	});
+});
+
+app.post("/shopping/add", function(req, res){
+	let str = "";
+	let username = req.cookies.username;
+	req.on("data", function(chunk){
+		str += chunk;
+	});
+	req.on("end", function(){
+		let obj = JSON.parse(str);
+		let data = {
+			id: obj.id
+		};
+		let result = {
+			status: 1,
+			msg: "添加成功"
+		};
+		Consumption.findByName(username, function(err, info){
+			if(err){
+				console.log(err);
+				return;
+			};
+			let shopping = info.shoppingCart;
+			let flag = false;
+			for(let i = 0, len = shopping.length; i < len; i++){
+				if(shopping[i].id === data.id){
+					shopping[i].num += obj.num;
+					flag = true;
+					break;
+				};
+			};
+			if(!flag){
+				data.num = obj.num;
+				Book.findById(obj.id, function(err, book){
+					if(err){
+						console.log(err);
+						return;
+					};
+					data.price = book.price;
+					data.name = book.name;
+					data.img = book.img;
+					shopping.push(data);
+					Consumption.update({"username": username}, {$set:{"shoppingCart": shopping}}, function(err, data){
+						if(err){
+							console.log(err);
+							return;
+						};
+						res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+						res.end(JSON.stringify(result));
+					});
+				});
+				return;
+			};
+			Consumption.update({"username": username}, {$set:{"shoppingCart": shopping}}, function(err, data){
+				if(err){
+					console.log(err);
+					return;
+				};
+				res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+				res.end(JSON.stringify(result));
+			});
+		});
+		
 	});
 });
 

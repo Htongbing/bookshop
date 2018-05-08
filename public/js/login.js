@@ -42,13 +42,15 @@
 	submit.onmouseout = function(){
 		this.style.backgroundColor = "red";
 	};
-	submit.onclick = function(){
+	submit.onclick = function(e){
 		if(user.value === ""){
+			e.preventDefault();
 			userTip.style.visibility = "visible";
 			userTip.style.color = user.previousElementSibling.style.color = "red";
 			user.parentNode.style.borderColor = "red";
 		};
 		if(password.value === ""){
+			e.preventDefault();
 			passwordTip.style.visibility = "visible";
 			passwordTip.style.color = password.previousElementSibling.style.color = "red";
 			password.parentNode.style.borderColor = "red";
