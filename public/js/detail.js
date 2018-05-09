@@ -47,10 +47,26 @@
 
 	utils.bindEvent(addCart, "click", function(){
 		let username = utils.handleCookie("username");
+		let id = utils.attr(this, "bookId");
 		if(!username){
 			window.open("/login");
 			return;
 		};
+		let option = {
+			type: "post",
+			url: "/shopping/add",
+			async: true,
+			success: function(val){
+				if(val.ok === 1){
+					utils.updateShopping();
+				};
+			},
+			data: {
+				id,
+				num: parseFloat(utils.val(buyNum))
+			}
+		};
+		utils.ajax(option);
 	});
 
 	function sum(){

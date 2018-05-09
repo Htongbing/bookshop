@@ -7,8 +7,11 @@ let utils = (function(){
 		return ele;
 	};
 
-	function selectClass(classname){
+	function selectClass(classname, ele){
 		let eles = document.getElementsByClassName(classname);
+		if(ele){
+			eles = ele.getElementsByClassName(classname);
+		};
 		eles = Array.prototype.slice.call(eles, "");
 		return eles;
 	};
@@ -25,7 +28,7 @@ let utils = (function(){
 	};
 
 	function html(ele, val){
-		if(!val){
+		if(val === undefined){
 			return ele.innerHTML;
 		};
 		ele.innerHTML = val;
@@ -33,11 +36,15 @@ let utils = (function(){
 	};
 
 	function val(ele, val){
-		if(!val){
+		if(val === undefined){
 			return ele.value;
 		};
 		ele.value = val;
 		return ele;
+	};
+
+	function searchFun(val){
+		window.open("/list?" + val);
 	};
 
 	function ajax(option){
@@ -52,10 +59,6 @@ let utils = (function(){
 			};
 		};
 		xhr.send(JSON.stringify(option.data));
-	};
-
-	function searchFun(val){
-		window.open("/list?" + val);
 	};
 
 	function handleCookie(key){
@@ -74,11 +77,33 @@ let utils = (function(){
 	};
 
 	function attr(ele, attr, val){
-		if(!val){
+		if(val === undefined){
 			return ele.getAttribute(attr);
 		};
 		ele.setAttribute(attr, val);
 		return this;
+	};
+
+	function updateShopping(){
+		let cartNumAry = selectClass("cart_items_num");
+		let option = {
+			type: "get",
+			url: "/shopping/num",
+			async: true,
+			success: function(val){
+				if(val.status === 1){
+					let num = val.num;
+					if(num > 99){
+						num = "99+";
+					};
+					cartNumAry.forEach((item) => {
+						utils.html(item, num);
+					});
+				};
+			},
+			data: null
+		};
+		ajax(option);
 	};
 
 	return {
@@ -86,11 +111,12 @@ let utils = (function(){
 		bindEvent,
 		html,
 		val,
-		ajax,
 		searchFun,
+		ajax,
 		selectClass,
 		selectTag,
 		handleCookie,
-		attr
+		attr,
+		updateShopping
 	};
 })();

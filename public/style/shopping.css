@@ -248,6 +248,10 @@ header{
 	margin: 0 10px 0 20px;
 	font-size: 12px;
 }
+.select.no-select,
+.all_select.no-select{
+	background-color: #fff;
+}
 .w200{
 	width: 200px;
 }
@@ -335,6 +339,10 @@ header{
 }
 .all_del{
 	margin-left: 30px;
+}
+.all_del:hover{
+	color: red;
+	text-decoration: underline;
 }
 .num_container{
 	margin-left: 100px;

@@ -1,11 +1,15 @@
 ~(function(){
 	let addCartAry = utils.selectClass("add_cart");
+	let flag = false;
+
+	if(utils.handleCookie("username")){
+		flag = true;
+	};
 
 	addCartAry.forEach((item) => {
 		utils.bindEvent(item, "click", function(){
-			let username = utils.handleCookie("username");
 			let id = utils.attr(item, "bookId");
-			if(!username){
+			if(!utils.handleCookie("username")){
 				window.open("/login");
 				return;
 			};
@@ -14,8 +18,12 @@
 				url: "/shopping/add",
 				async: true,
 				success: function(val){
-					if(val.status === 1){
+					if(!flag){
 						location.reload();
+						return;
+					};
+					if(val.ok === 1){
+						utils.updateShopping();
 					};
 				},
 				data: {

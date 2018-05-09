@@ -12,7 +12,7 @@ html(lang='en')
         #tool.tool
           ul.operate
             li
-              a(href='/shopping')
+              a.shopping_cart(href='javascript:;')
                 span.icon-cart
                 | 购物车
                 b.cart_items_num 0
@@ -58,7 +58,7 @@ html(lang='en')
               a(href='javascript:;') 使女的故事
               a(href='javascript:;') 高级搜索
           .user_line
-            a.user_cart(href='/shopping')
+            a.user_cart.shopping_cart(href='/shopping')
               span.icon-cart
               | 						购物车
               b.cart_items_num 0

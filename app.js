@@ -12,7 +12,7 @@ let cookieParser = require("cookie-parser");
 let session = require("express-session");
 let mongoStore = require("connect-mongo")(session);
 let	_ = require("underscore");
-let dbUrl = "mongodb://localhost:27017/bookshop";
+let dbUrl = "mongodb://127.0.0.1:27017/bookshop";
 
 mongoose.connect(dbUrl);
 
@@ -163,10 +163,6 @@ app.post("/shopping/add", function(req, res){
 		let data = {
 			id: obj.id
 		};
-		let result = {
-			status: 1,
-			msg: "添加成功"
-		};
 		Consumption.findByName(username, function(err, info){
 			if(err){
 				console.log(err);
@@ -198,7 +194,7 @@ app.post("/shopping/add", function(req, res){
 							return;
 						};
 						res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
-						res.end(JSON.stringify(result));
+						res.end(JSON.stringify(data));
 					});
 				});
 				return;
@@ -209,10 +205,49 @@ app.post("/shopping/add", function(req, res){
 					return;
 				};
 				res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
-				res.end(JSON.stringify(result));
+				res.end(JSON.stringify(data));
 			});
 		});
 		
+	});
+});
+
+app.get("/shopping/num", function(req, res){
+	let username = req.cookies.username;
+	let result = {
+		status: 1,
+		num: 0
+	};
+	Consumption.findByName(username, function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		let shopping = data.shoppingCart;
+		shopping.forEach((item) => {
+			result.num += item.num;
+		});
+		res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+		res.end(JSON.stringify(result));
+	});
+});
+
+app.post("/shopping/change", function(req, res){
+	let str = "";
+	let username = req.cookies.username;
+	req.on("data", function(chunk){
+		str += chunk;
+	});
+	req.on("end", function(){
+		let obj = JSON.parse(str);
+		Consumption.update({"username": username, "shoppingCart.id": obj.id}, {$set:{"shoppingCart.$.num": obj.num}}, function(err, data){
+			if(err){
+				console.log(err);
+				return;
+			};
+			res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+			res.end(JSON.stringify(data));
+		});
 	});
 });
 
@@ -308,8 +343,16 @@ app.get("/register/mail", function(req, res){
 });
 
 app.get("/shopping", function(req, res){
-	res.render("shopping", {
-		title: "购物车"
+	let username = req.cookies.username;
+	Consumption.findByName(username, function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		res.render("shopping", {
+			title: "购物车",
+			shopping: data.shoppingCart
+		});
 	});
 });
 
