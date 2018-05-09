@@ -405,6 +405,10 @@ header{
 }
 .main .comment > div{
 	border-top: 1px solid red;
+	display: none;
+}
+.main .comment > div.active{
+	display: block;
 }
 .main .comment > div > ul{
 	overflow: hidden;
@@ -455,8 +459,10 @@ header{
 .main .comment .com_list .com_region > div{
 	background-color: #fff;
 	overflow: hidden;
-	border-top: 1px solid #ccc;
 	min-height: 140px;
+}
+.main .comment .com_list .com_region > div:not(:first-child){
+	border-top: 1px solid #ccc;
 }
 .main .comment .com_list .com_region .com_item > div{
 	float: left;

@@ -371,3 +371,12 @@ header{
 .sum{
 	margin-right: 40px;
 }
+.no-result{
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 16px;
+	color: #666;
+	height: 300px;
+	line-height: 300px
+}

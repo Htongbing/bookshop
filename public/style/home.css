@@ -470,6 +470,7 @@ header{
 	height: 100px;
 	display: none;
 	background: url("../images/default.gif") no-repeat center center #f2f2f2;
+	margin-right: 10px;
 }
 .main .ranking_list > ul > li > a > img{
 	width: 100%;
@@ -669,6 +670,8 @@ header{
 .main .like div > ul > li img{
 	display: none;
 	opacity: 0;
+	width: 150px;
+	height: 150px;
 }
 .main .recommend div > ul > li a:nth-child(2),
 .main .like div > ul > li a:nth-child(2){

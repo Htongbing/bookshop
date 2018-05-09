@@ -22,6 +22,20 @@ let utils = (function(){
 		return eles;
 	};
 
+	function children(ele, tag){
+		let ary = Array.prototype.slice.call(ele.children, "");
+		if(tag){
+			let newAry = [];
+			ary.forEach((item) => {
+				if(item.tagName.toLowerCase() === tag.toLowerCase()){
+					newAry.push(item);
+				};
+			});
+			return newAry;
+		};
+		return ary;
+	};
+
 	function bindEvent(ele, type, fn){
 		ele.addEventListener(type, fn);
 		return ele;
@@ -115,6 +129,7 @@ let utils = (function(){
 		ajax,
 		selectClass,
 		selectTag,
+		children,
 		handleCookie,
 		attr,
 		updateShopping

@@ -7,6 +7,21 @@
 	const numPlus = utils.selectEle("num_plus");
 	const numMinus = utils.selectEle("num_minus");
 	const addCart = utils.selectEle("addCart");
+	const comment = utils.selectEle("comment");
+	const list = utils.selectEle("list");
+	const tabLiAry = utils.selectTag(list, "li");
+	const tabAry = utils.children(comment, "div");
+
+	tabLiAry.forEach((item, index) => {
+		utils.bindEvent(item, "click", function(){
+			tabLiAry.forEach((newItem, newIndex) => {
+				newItem.className = "";
+				tabAry[newIndex].className = tabAry[newIndex].className.replace(/ active/g, "");
+			});
+			item.className = "active";
+			tabAry[index].className += " active";
+		});
+	});
 
 	utils.bindEvent(buyNum, "keyup", function(){
 		if(!/^\d+$/.test(utils.val(this)) && utils.val(this) !== ""){

@@ -60,6 +60,18 @@ BookSchema.statics = {
 		return this
 			.find(condition)
 			.exec(cb);
+	},
+	fetchSortPublish: function(cb){
+		return this
+			.find({})
+			.sort({"pubTime": -1})
+			.exec(cb);
+	},
+	fetchSortSale: function(cb){
+		return this
+			.find({})
+			.sort({"sale": -1})
+			.exec(cb);
 	}
 };
 

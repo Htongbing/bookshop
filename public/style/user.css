@@ -218,7 +218,6 @@ header{
 	width: 100%;
 }
 .main{
-	width: 100%;
 	width: 1200px;
 	margin: 0 auto;
 	overflow: hidden;
@@ -249,145 +248,87 @@ header{
 }
 .main .nav > ul > li a:hover,
 .main .nav > ul > li.active a{
-	color: #333;
-}
-.main .con,
-.main .nav{
-	float: left;
-}
-.main .con{
-	padding: 20px;
-	width: 960px;
-}/*
-.main .con h3{
-	font-size: 16px;
-	font-weight: normal;
-	margin-bottom: 10px;
-	border-bottom: 1px solid #ccc;
-	line-height: 36px;
-	height: 36px;
-}
-.main .con .star{
 	color: red;
 }
-.main .con .head{
-	padding: 20px;
-}
-.main .con .head .head_img{
-	border: 1px solid #ccc;
-	width: 100px;
-	height: 100px;
-	padding: 5px;
-	display: inline-block;
-	margin-right: 20px;
-	vertical-align: bottom;
-}
-.main .con .head .head_img img{
-	width: 100%;
-	height: 100%;
-}
-.main .con .img_select{
-	display: inline-block;
-}
-.main .con .img_select h4{
-	margin-bottom: 15px;
-	font-weight: normal;
-	font-size: 14px;
-}*/
-.main .con .user{
-	width: 122px;
-	margin: 0 auto;
-}
-.main .con .user .head_img{
-	width: 100px;
-	height: 100px;
-	border: 1px solid #ccc;
-	border-radius: 50%;
-	overflow: hidden;
-	background-color: #fff;
-	padding: 10px;
-}
-.main .con .user .head_img img{
-	width: 100%;
-	height: 100%;
-}
-.main .con .user p{
-	width: 100px;
-	margin: 0 auto;
-	height: 20px;
-	line-height: 20px;
-	font-size: 16px;
-	color: #999;
-	margin-top: 10px;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-.main .con .like div{
-	width: 100%;
-	border-top: 1px solid red;
-	padding-top: 20px;
-}
-.main .con .like div > ul{
-	overflow: hidden;
-}
-.main .con .like div > ul > li{
+.main .nav,
+.main .con{
 	float: left;
-	width: 150px;
-	margin: 0 120px 40px 0;
 }
-.main .con .like div > ul > li:nth-child(4n){
-	margin-right: 0;
+.con{
+	width: 1000px;
+	font-size: 16px;
 }
-.main .con .like div > ul > li a{
-	display: block;
-	width: 100%;
-	font-size: 14px;
-}
-.main .con .like div > ul > li a:first-child{
-	background: url("../images/default.gif") no-repeat center center #f2f2f2;
-	width: 150px;
-	height: 150px;
-}/*
-.main .con .like div > ul > li img{
+.tab{
 	display: none;
-	opacity: 0;
-}*/
-.main .con .like div > ul > li a:nth-child(2){
-	height: 24px;
-	line-height: 24px;
-	overflow: hidden;
-	padding: 0 10px;
-	width: 130px;
-	margin-top: 10px;
 }
-.main .con .like div > ul > li .author{
-	color: #aaa;
-	font-size: 14px;
-	height: 24px;
-	line-height: 24px;
-	padding: 0 10px;
-}
-.main .con .like div > ul > li .price{
-	padding: 0 10px;
-	font-size: 14px;
-	line-height: 24px;
-	height: 24px;
-}
-.main .con .like div > ul > li .price .cur_price{
-	color: #d72832;
-	font-weight: bold;
-	margin-right: 10px;
-}
-.main .con .like div > ul > li .price .ori_price{
-	color: #ccc;
-	text-decoration: line-through;
-}
-.main .con .like{
-	width: 100%;
-	padding-top: 46px;
-	background: url("../images/like_title.png") no-repeat;
-}
-.main .con .like div{
+.tab.active{
 	display: block;
+}
+.box{
+	margin-top: 20px;
+}
+.box label{
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+}
+.box select{
+	font-size: 16px;
+	padding: 0 10px;
+	outline: none;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 4px;
+}
+.box input{
+	width: 50%;
+	border: 1px solid #ccc;
+	padding: 10px 5px;
+	border-radius: 4px;
+}
+.btn{
+	text-align: center;
+	margin-top: 20px;
+}
+.btn button:first-child{
+	margin-right: 20px;
+}
+.btn button,
+.box > button{
+	line-height: 1;
+	padding: 10px 20px;
+	background-color: red;
+	color: #fff;
+	font-size: 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	opacity: 0.8
+}
+.btn button:hover,
+.box > button:hover{
+	opacity: 0.5;
+}
+.box > button{
+	margin-left: 20px;
+}
+.box table{
+	width: 90%;
+	margin: 0 auto;
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+}
+.box td,
+.box th{
+	text-align: center;
+	padding: 15px 0;
+	border: 1px solid #ccc;
+}
+.box td a:hover{
+	color: red;
+	text-decoration: underline;
+}
+.box th{
+	background-color: red;
+	color: #fff;
+	opacity: 0.7;
 }

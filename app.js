@@ -44,8 +44,44 @@ app.get("/", function(req, res){
 	if(req.session.user){
 		res.cookie("username", req.session.user.username);
 	};
-	res.render("index", {
-		title: "首页"
+	Book.fetchSortPublish(function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		let newBook = [];
+		let recBook = [];
+		for(let i = 0; i < 9; i++){
+			newBook.push(data[i]);
+		};
+		for(let i = 0; i < 12; i++){
+			let randomIndex = Math.floor(Math.random() * (data.length - 1));
+			recBook.push(data[randomIndex]);
+			data.splice(randomIndex, 1);
+		};
+		Book.fetchSortSale(function(err, newData){
+			if(err){
+				console.log(err);
+				return;
+			};
+			let rankBook = [];
+			let likeBook = [];
+			for(let i = 0; i < 10; i++){
+				rankBook.push(newData[i]);
+			};
+			for(let i = 0; i < 12; i++){
+				let randomIndex = Math.floor(Math.random() * (newData.length - 1));
+				likeBook.push(newData[randomIndex]);
+				newData.splice(randomIndex, 1);
+			};
+			res.render("index", {
+				title: "首页",
+				newBook,
+				recBook,
+				rankBook,
+				likeBook
+			});
+		});
 	});
 });
 
@@ -248,6 +284,49 @@ app.post("/shopping/change", function(req, res){
 			res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
 			res.end(JSON.stringify(data));
 		});
+	});
+});
+
+app.post("/shopping/remove", function(req, res){
+	let str = "";
+	let username = req.cookies.username;
+	req.on("data", function(chunk){
+		str += chunk;
+	});
+	req.on("end", function(){
+		let obj = JSON.parse(str);
+		if(obj.id){
+			Consumption.update({"username": username}, {$pull: {"shoppingCart": {"id": obj.id}}}, function(err, data){
+				if(err){
+					console.log(err);
+					return;
+				};
+				res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+				res.end(JSON.stringify(data));
+			});
+			return;
+		};
+		if(obj.idAry.length > 0){
+			obj.idAry.forEach((item, index) => {
+				if(index === obj.idAry.length - 1){
+					Consumption.update({"username": username}, {$pull: {"shoppingCart": {"id": item}}}, function(err, data){
+						if(err){
+							console.log(err);
+							return;
+						};
+						res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+						res.end(JSON.stringify(data));
+					});
+				}else{
+					Consumption.update({"username": username}, {$pull: {"shoppingCart": {"id": item}}}, function(err, data){
+						if(err){
+							console.log(err);
+							return;
+						};
+					});
+				};
+			});
+		};
 	});
 });
 

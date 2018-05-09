@@ -2,6 +2,7 @@
 	let search = utils.selectEle("search");
 	let searchCon = utils.selectEle("search_con");
 	let shoppingCartAry = utils.selectClass("shopping_cart");
+	let userIndentAry = utils.selectClass("user_indent");
 
 	if(utils.handleCookie("username")){
 		utils.updateShopping();
@@ -14,6 +15,16 @@
 				return;
 			};
 			window.open("/shopping");
+		});
+	});
+
+	userIndentAry.forEach((item) => {
+		utils.bindEvent(item, "click", function(){
+			if(!utils.handleCookie("username")){
+				window.open("/login");
+				return;
+			};
+			window.open("/user");
 		});
 	});
 

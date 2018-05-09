@@ -17,9 +17,7 @@ html(lang='en')
                 | 购物车
                 b.cart_items_num 0
             li
-              a(href='javascript:;') 我的订单
-            li
-              a(href='user.html') 我的帐号
+              a.user_indent(href='javascript:;') 我的帐号
           .welcome
             span
               if user
@@ -32,7 +30,7 @@ html(lang='en')
                 a(href='/register/phone') 注册
       .logo_line
         .logo
-          a(href='bookshop.html')
+          a(href='/')
             img(src='/images/logo.jpg')
           .search_line
             .search
@@ -63,155 +61,108 @@ html(lang='en')
               |             购物车
               b.cart_items_num 0
             a.user_indent(href='javascript:;')
-              | 我的订单
+              | 我的帐号
     .main_container
       .main
         .nav
           span
             span.icon-user
             | 我的帐号
-          ul
-            li
+          ul#nav
+            li.active
               a(href='javascript:;') 个人信息
             li
-              a(href='javascript:;') 安全中心
+              a(href='javascript:;') 修改登录密码
+            li
+              a(href='javascript:;') 修改支付密码
             li
               a(href='javascript:;') 收货地址
             li
               a(href='javascript:;') 我的订单
-            li
-              a(href='javascript:;') 我的账单
-            li
-              a(href='javascript:;') 商品收藏
-            li
-              a(href='javascript:;') 评论/晒单
         .con
-          .user
-            .head_img
-              img(src='/images/default.gif')
-            p 188****2747
-          .like
-            div
-              ul
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
-                li
-                  a(href='javascript:;')
-                    img(src='/images/like.jpg')
-                  a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                    | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                  p.author
-                    | 青山剛昌
-                  p.price
-                    span.cur_price ¥112.50
-                    span.ori_price ¥150.00
+          .tab.active
+            .box
+              label 用户名：
+              span a18814382747
+            .box
+              label 性别：
+              select(value="")
+                option(value="") 
+                option(value="男") 男
+                option(value="女") 女
+            .box
+              label 手机号：
+              input(type="text")
+            .box
+              label 余额：
+              span &yen;100.00
+              button 充值
+            .btn
+              button 修改
+              button 重置
+          .tab
+            .box
+              label 旧登录密码：
+              input(type="password")
+            .box
+              label 新登录密码：
+              input(type="password")
+            .box
+              label 再次输入密码：
+              input(type="password")
+            .btn
+              button 修改
+              button 重置
+          .tab
+            .box
+              label 旧支付密码：
+              input(type="password")
+            .box
+              label 新支付密码：
+              input(type="password")
+            .box
+              label 再次输入密码：
+              input(type="password")
+            .btn
+              button 修改
+              button 重置
+          .tab
+            .box
+              label 收货地址：
+              input(type="text")
+            .btn
+              button 修改
+              button 重置
+          .tab
+            .box
+              table
+                tr
+                  th 订单编号
+                  th 下单时间
+                  th 消费金额
+                  th 订单状态
+                  th 操作
+                tr
+                  td 44520201805092205326
+                  td 2018-05-09 22:05
+                  td 213.54
+                  td 待发货
+                  td
+                    a(href="https://www.kuaidi100.com/chaxun?com=huitongkuaidi&nu=71263967936202", target="_blank") 查看物流
+                tr
+                  td 44520201805092205345
+                  td 2018-05-09 22:05
+                  td 213.54
+                  td 已发货
+                  td
+                    a(href="https://www.kuaidi100.com/chaxun?com=huitongkuaidi&nu=71263967936202", target="_blank") 查看物流
+                tr
+                  td 44520201805082205345
+                  td 2018-05-09 22:05
+                  td 213.54
+                  td 已签收
+                  td
+                    a(href="https://www.kuaidi100.com/chaxun?com=huitongkuaidi&nu=71263967936202", target="_blank") 查看物流
     script(src='/js/utils.js')
     script(src='/js/header.js')
+    script(src="/js/user.js")

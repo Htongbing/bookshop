@@ -161,10 +161,10 @@
 			ulStep > scrollLis.length ? ulStep = 1 : null;
 			ulStep === 1 ? newbooksUl.style.left = 0 + "px" : null;
 			slideBtn(scrollLis, ulStep);
-			var scrollStep = (parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) + 700 * ulStep) / 500 * 10;
+			var scrollStep = (parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) + 705 * ulStep) / 500 * 10;
 			newbooksUl.timer = window.setInterval(function(){
-				if(parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) <= ulStep * -700 + scrollStep){
-					newbooksUl.style.left = ulStep * -700 + "px";
+				if(parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) <= ulStep * -705 + scrollStep){
+					newbooksUl.style.left = ulStep * -705 + "px";
 					window.clearInterval(newbooksUl.timer);
 					return;
 				};
@@ -175,12 +175,12 @@
 			window.clearInterval(newbooksUl.timer);
 			ulStep--;
 			ulStep < 0 ? ulStep = scrollLis.length - 1 : null;
-			ulStep === scrollLis.length - 1 ? newbooksUl.style.left = -700 * scrollLis.length + "px" : null;
+			ulStep === scrollLis.length - 1 ? newbooksUl.style.left = -705 * scrollLis.length + "px" : null;
 			slideBtn(scrollLis, ulStep);
-			var scrollStep = (parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) + 700 * ulStep) / 500 * 10;
+			var scrollStep = (parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) + 705 * ulStep) / 500 * 10;
 			newbooksUl.timer = window.setInterval(function(){
-				if(parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) >= ulStep * -700 + scrollStep){
-					newbooksUl.style.left = ulStep * -700 + "px";
+				if(parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) >= ulStep * -705 + scrollStep){
+					newbooksUl.style.left = ulStep * -705 + "px";
 					window.clearInterval(newbooksUl.timer);
 					return;
 				};
@@ -195,11 +195,11 @@
 					var tempStep = ulStep;
 					ulStep = this.index;
 					slideBtn(scrollLis, ulStep);
-					var scrollStep = (parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) + 700 * ulStep) / 500 * 10;
+					var scrollStep = (parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) + 705 * ulStep) / 500 * 10;
 					if(ulStep > tempStep){
 						newbooksUl.timer = window.setInterval(function(){
-							if(parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) <= ulStep * -700 + scrollStep){
-								newbooksUl.style.left = ulStep * -700 + "px";
+							if(parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) <= ulStep * -705 + scrollStep){
+								newbooksUl.style.left = ulStep * -705 + "px";
 								window.clearInterval(newbooksUl.timer);
 								return;
 							};
@@ -207,8 +207,8 @@
 						}, 10);
 					}else{
 						newbooksUl.timer = window.setInterval(function(){
-							if(parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) >= ulStep * -700 + scrollStep){
-								newbooksUl.style.left = ulStep * -700 + "px";
+							if(parseFloat(window.getComputedStyle(newbooksUl, null)["left"]) >= ulStep * -705 + scrollStep){
+								newbooksUl.style.left = ulStep * -705 + "px";
 								window.clearInterval(newbooksUl.timer);
 								return;
 							};

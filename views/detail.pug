@@ -17,9 +17,7 @@ html(lang='en')
                 | 购物车
                 b.cart_items_num 0
             li
-              a(href='/user') 我的订单
-            li
-              a(href='/user') 我的帐号
+              a.user_indent(href='javascript:;') 我的帐号
           .welcome
             span
               if user
@@ -62,8 +60,8 @@ html(lang='en')
               span.icon-cart
               | 						购物车
               b.cart_items_num 0
-            a.user_indent(href='/user')
-              | 我的订单
+            a.user_indent(href='javascript:;')
+              | 我的帐号
     .main_continer
       .main
         ul.nav
@@ -114,11 +112,11 @@ html(lang='en')
                 span.icon-cart
                 | 加入购物车
               a(href='javascript:;', id="buyNow") 立即购买
-        .comment
-          ul
+        .comment#comment
+          ul#list
             li.active 商品详情
-            li 商品评论(999)
-          .com_detail
+            li 商品评论
+          .com_detail.active
             ul
               li 版 次：#{book.num}
               li 页 数：#{book.page}
@@ -133,16 +131,12 @@ html(lang='en')
                 span 所属分类：
                 div
                   p
-                    a(href="/list") 全部
-                    - for(var key in book.classify)
-                      | &gt;
-                      a(href="/list") #{book.classify[key]}
+                    a(href="/list/all") 全部
+                    | &gt;
+                    a(href="/list?first=" + book.classify.first) #{book.classify.first}
+                    | &gt;
+                    a(href="/list?first=" + book.classify.first + "&second=" + book.classify.second) #{book.classify.second}
           .com_list
-            ul
-              li.active 全部（999）
-              li 好评（996）
-              li 中评（3）
-              li 差评（0）
             .com_region
               .com_item
                 .item_left
@@ -159,16 +153,6 @@ html(lang='en')
                 .item_right
                   img(src='/images/default.gif')
                   p 无昵称用户
-            .pagenum_container
-              .pagenum
-                a(href='javascript:;') &lt;
-                a.active(href='javascript:;') 1
-                a(href='javascript:;') 2
-                a(href='javascript:;') 3
-                a(href='javascript:;') 4
-                a(href='javascript:;') 5
-                span ···
-                a(href='javascript:;') &gt;
     script(src='/js/utils.js')
     script(src='/js/header.js')
     script(src='/js/detail.js')

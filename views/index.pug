@@ -17,9 +17,7 @@ html(lang='en')
                 | 购物车
                 b.cart_items_num 0
             li
-              a(href='/user') 我的订单
-            li
-              a(href='/user') 我的帐号
+              a.user_indent(href='javascript:;') 我的帐号
           .welcome
             span
               if user
@@ -63,7 +61,7 @@ html(lang='en')
               | 						购物车
               b.cart_items_num 0
             a.user_indent(href='javascript:;')
-              | 我的订单
+              | 我的帐号
     .main_container
       .main
         #classify.classify
@@ -1845,86 +1843,18 @@ html(lang='en')
         #ranking_list.ranking_list
           h3 销售排行榜
           ul
-            li
-              span
-              a.images(href='javascript:;')
-                img(src='', truesrc='/images/rank1.jpg')
-              .name
-                a(href='javascript:;', title='就喜欢你看不惯我又干不掉我的样子3') 就喜欢你看不惯我又干不掉我的样子3
-                p.cur_price ¥32.50
-                p.ori_price ¥55.00
-            li
-              span
-              a.images(href='javascript:;')
-                img(src='', truesrc='/images/rank2.jpg')
-              .name
-                a(href='javascript:;', title='女孩们（在这个世界上 只是身为女孩 就会妨碍你相信自己）') 女孩们（在这个世界上 只是身为女孩 就会妨碍你相信自己）
-                p.cur_price ¥34.40
-                p.ori_price ¥49.80
-            li
-              span
-              a.images(href='javascript:;')
-                img(src='', truesrc='/images/rank3.jpg')
-              .name
-                a(href='javascript:;', title='你的能力，要学会用故事讲出来（一本让你的能力不再埋没的书）') 你的能力，要学会用故事讲出来（一本让你的能力不再埋没的书）
-                p.cur_price ¥29.00
-                p.ori_price ¥42.00
-            li
-              span 4
-              a.images(href='javascript:;')
-                img(src='', truesrc='/images/rank4.jpg')
-              .name
-                a(href='javascript:;', title='情商是什么（所谓情商高，绝不仅仅是会说话。百万畅销书《灵魂有香气的女子》李筱懿全新力作。她用好听的故事深入浅出剖析情商硬知识）') 情商是什么（所谓情商高，绝不仅仅是会说话。百万畅销书《灵魂有香气的女子》李筱懿全新力作。她用好听的故事深入浅出剖析情商硬知识）
-                p.cur_price ¥23.40
-                p.ori_price ¥39.00
-            li
-              span 5
-              a.images(href='javascript:;')
-                img(src='', truesrc='/images/rank5.jpg')
-              .name
-                a(href='javascript:;', title='习近平谈治国理政（第二卷）中文版平装本（100册以上团购请联系电话010-57993149）') 习近平谈治国理政（第二卷）中文版平装本（100册以上团购请联系电话010-57993149）
-                p.cur_price ¥64.00
-                p.ori_price ¥80.00
-            li
-              span 6
-              a.images(href='javascript:;')
-                img(src='', truesrc='/images/rank6.jpg')
-              .name
-                a(href='javascript:;', title='原则 principles 雷·达里奥著 跨年演讲推荐图书 团购电话:010-57993149') 原则principles雷·达里奥著 跨年演讲推荐图书 团购电话:010-57993149
-                p.cur_price ¥66.60
-                p.ori_price ¥98.00
-            li
-              span 7
-              a.images(href='javascript:;')
-                img(src='', truesrc='/images/rank7.jpg')
-              .name
-                a(href='javascript:;', title='生活需要仪式感（你可以活得更高级，把温暖和感动带给你在乎的人）') 生活需要仪式感（你可以活得更高级，把温暖和感动带给你在乎的人）
-                p.cur_price ¥24.80
-                p.ori_price ¥36.00
-            li
-              span 8
-              a.images(href='javascript:;')
-                img(src='', truesrc='/images/rank8.jpg')
-              .name
-                a(href='javascript:;', title='100:青少年必读100部经典（清华附中校长王殿军、罗振宇，吴晓波推荐。通识教育的理想书单，涵盖孩子十二年成长历程）') 100:青少年必读100部经典（清华附中校长王殿军、罗振宇，吴晓波推荐。通识教育的理想书单，涵盖孩子十二年成长历程）
-                p.cur_price ¥40.80
-                p.ori_price ¥68.00
-            li
-              span 9
-              a.images(href='javascript:;')
-                img(src='', truesrc='/images/rank9.jpg')
-              .name
-                a(href='javascript:;', title='尤尔小屋的猫') 尤尔小屋的猫
-                p.cur_price ¥27.50
-                p.ori_price ¥39.80
-            li
-              span 10
-              a.images(href='javascript:;')
-                img(src='', truesrc='/images/rank10.jpg')
-              .name
-                a(href='javascript:;', title='激荡十年，水大鱼大 吴晓波') 激荡十年，水大鱼大 吴晓波
-                p.cur_price ¥34.20
-                p.ori_price ¥58.00
+            each item, index in rankBook
+              li
+                if index < 3
+                  span
+                else
+                  span #{index + 1}
+                a.images(href='/book/' + item._id)
+                  img(src='', truesrc=item.img)
+                .name
+                  a(href='/book/' + item._id, title=item.name) #{item.name}
+                  p.cur_price ¥#{(item.price).toFixed(2)}
+                  p.ori_price ¥#{(item.oriPrice).toFixed(2)}
           a(href='javascript:;') 查看完整榜单&gt;&gt;
         .new_books
           #new_books.newbooks_container
@@ -1932,95 +1862,95 @@ html(lang='en')
               li
                 ul
                   li
-                    a.images(href='/book/1')
-                      img(src='', truesrc='/images/new1.jpg')
+                    a.images(href='/book/' + newBook[0]._id)
+                      img(src='', truesrc=newBook[0].img)
                     .name
-                      a(href='/book/1', title='白金数据') 白金数据
-                      p.cur_price ¥40.80
-                      p.ori_price ¥68.00
+                      a(href='/book/' + newBook[0]._id, title=newBook[0].name) #{newBook[0].name}
+                      p.cur_price ¥#{(newBook[0].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[0].oriPrice).toFixed(2)}
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new2.jpg')
+                    a.images(href='/book/' + newBook[1]._id)
+                      img(src='', truesrc=newBook[1].img)
                     .name
-                      a(href='javascript:;', title='博物馆里的传世珠宝') 博物馆里的传世珠宝
-                      p.cur_price ¥88.00
-                      p.ori_price ¥128.00
+                      a(href='/book/' + newBook[1]._id, title=newBook[1].name) #{newBook[1].name}
+                      p.cur_price ¥#{(newBook[1].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[1].oriPrice).toFixed(2)}
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new3.jpg')
+                    a.images(href='/book/' + newBook[2]._id)
+                      img(src='', truesrc=newBook[2].img)
                     .name
-                      a(href='javascript:;', title='努力，是为遇见更好的自己') 努力，是为遇见更好的自己
-                      p.cur_price ¥51.90
-                      p.ori_price ¥88.00
+                      a(href='/book/' + newBook[2]._id, title=newBook[2].name) #{newBook[2].name}
+                      p.cur_price ¥#{(newBook[2].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[2].oriPrice).toFixed(2)}
               li
                 ul
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new4.jpg')
+                    a.images(href='/book/' + newBook[3]._id)
+                      img(src='', truesrc=newBook[3].img)
                     .name
-                      a(href='javascript:;', title='见识丛书·基因传') 见识丛书·基因传
-                      p.cur_price ¥28.50
-                      p.ori_price ¥38.00
+                      a(href='/book/' + newBook[3]._id, title=newBook[3].name) #{newBook[3].name}
+                      p.cur_price ¥#{(newBook[3].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[3].oriPrice).toFixed(2)}
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new5.jpg')
+                    a.images(href='/book/' + newBook[4]._id)
+                      img(src='', truesrc=newBook[4].img)
                     .name
-                      a(href='javascript:;', title='硅谷工程师爸爸的超强思维训练课') 硅谷工程师爸爸的超强思维训练课
-                      p.cur_price ¥34.60
-                      p.ori_price ¥48.00
+                      a(href='/book/' + newBook[4]._id, title=newBook[4].name) #{newBook[4].name}
+                      p.cur_price ¥#{(newBook[4].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[4].oriPrice).toFixed(2)}
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new6.jpg')
+                    a.images(href='/book/' + newBook[5]._id)
+                      img(src='', truesrc=newBook[5].img)
                     .name
-                      a(href='javascript:;', title='给孩子的自然简史') 给孩子的自然简史
-                      p.cur_price ¥54.00
-                      p.ori_price ¥108.00
+                      a(href='/book/' + newBook[5]._id, title=newBook[5].name) #{newBook[5].name}
+                      p.cur_price ¥#{(newBook[5].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[5].oriPrice).toFixed(2)}
               li
                 ul
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new7.jpg')
+                    a.images(href='/book/' + newBook[6]._id)
+                      img(src='', truesrc=newBook[6].img)
                     .name
-                      a(href='javascript:;', title='1周1个好故事——迪士尼双语故事屋') 1周1个好故事——迪士尼双语故事屋
-                      p.cur_price ¥119.00
-                      p.ori_price ¥238.00
+                      a(href='/book/' + newBook[6]._id, title=newBook[6].name) #{newBook[6].name}
+                      p.cur_price ¥#{(newBook[6].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[6].oriPrice).toFixed(2)}
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new8.jpg')
+                    a.images(href='/book/' + newBook[7]._id)
+                      img(src='', truesrc=newBook[7].img)
                     .name
-                      a(href='javascript:;', title='小学问:解决你的7种人生焦虑') 小学问:解决你的7种人生焦虑
-                      p.cur_price ¥33.70
-                      p.ori_price ¥52.00
+                      a(href='/book/' + newBook[7]._id, title=newBook[7].name) #{newBook[7].name}
+                      p.cur_price ¥#{(newBook[7].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[7].oriPrice).toFixed(2)}
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new9.jpg')
+                    a.images(href='/book/' + newBook[8]._id)
+                      img(src='', truesrc=newBook[8].img)
                     .name
-                      a(href='javascript:;', title='逆境中觉醒') 逆境中觉醒
-                      p.cur_price ¥25.50
-                      p.ori_price ¥48.00
+                      a(href='/book/' + newBook[8]._id, title=newBook[8].name) #{newBook[8].name}
+                      p.cur_price ¥#{(newBook[8].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[8].oriPrice).toFixed(2)}
               li
                 ul
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new1.jpg')
+                    a.images(href='/book/' + newBook[0]._id)
+                      img(src='', truesrc=newBook[0].img)
                     .name
-                      a(href='javascript:;', title='白金数据') 白金数据
-                      p.cur_price ¥40.80
-                      p.ori_price ¥68.00
+                      a(href='/book/' + newBook[0]._id, title=newBook[0].name) #{newBook[0].name}
+                      p.cur_price ¥#{(newBook[0].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[0].oriPrice).toFixed(2)}
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new2.jpg')
+                    a.images(href='/book/' + newBook[1]._id)
+                      img(src='', truesrc=newBook[1].img)
                     .name
-                      a(href='javascript:;', title='博物馆里的传世珠宝') 博物馆里的传世珠宝
-                      p.cur_price ¥88.00
-                      p.ori_price ¥128.00
+                      a(href='/book/' + newBook[1]._id, title=newBook[1].name) #{newBook[1].name}
+                      p.cur_price ¥#{(newBook[1].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[1].oriPrice).toFixed(2)}
                   li
-                    a.images(href='javascript:;')
-                      img(src='', truesrc='/images/new3.jpg')
+                    a.images(href='/book/' + newBook[2]._id)
+                      img(src='', truesrc=newBook[2].img)
                     .name
-                      a(href='javascript:;', title='努力，是为遇见更好的自己') 努力，是为遇见更好的自己
-                      p.cur_price ¥51.90
-                      p.ori_price ¥88.00
+                      a(href='/book/' + newBook[2]._id, title=newBook[2].name) #{newBook[2].name}
+                      p.cur_price ¥#{(newBook[2].price).toFixed(2)}
+                      p.ori_price ¥#{(newBook[2].oriPrice).toFixed(2)}
           #newbook_left.btn
           #newbook_right.btn
           ul
@@ -2041,126 +1971,17 @@ html(lang='en')
             li 电子书
           div
             ul
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/recommend1.jpg')
-                a(href='javascript', title='故事：材质、结构、风格和银幕剧作的原理')
-                  | 故事：材质、结构、风格和银幕剧作的原理
-                p.author
-                  | （美）罗伯特麦基
-                p.price
-                  span.cur_price ¥40.10
-                  span.ori_price ¥68.00
+              each item in recBook
+                li
+                  a(href='/book/' + item._id)
+                    img(src='', truesrc=item.img)
+                  a(href='/book/' + item._id, title=item.name)
+                    | #{item.name}
+                  p.author
+                    | #{item.author}
+                  p.price
+                    span.cur_price ¥#{(item.price).toFixed(2)}
+                    span.ori_price ¥#{(item.oriPrice).toFixed(2)}
           div
             ul
               li
@@ -3250,126 +3071,17 @@ html(lang='en')
         #like.like
           div
             ul
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
-              li
-                a(href='javascript:;')
-                  img(src='', truesrc='/images/like.jpg')
-                a(href='javascript', title='柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！')
-                  | 柯南小说版套装(10本)引进日本小学馆版权柯南小说（10本）文字小说，悬疑推理侦破真相只有一个！
-                p.author
-                  | 青山剛昌
-                p.price
-                  span.cur_price ¥112.50
-                  span.ori_price ¥150.00
+              each item in likeBook
+                li
+                  a(href='/book/' + item._id)
+                    img(src='', truesrc=item.img)
+                  a(href='/book/' + item._id, title=item.name)
+                    | #{item.name}
+                  p.author
+                    | #{item.author}
+                  p.price
+                    span.cur_price ¥#{(item.price).toFixed(2)}
+                    span.ori_price ¥#{(item.oriPrice).toFixed(2)}
     script(src='/js/utils.js')
     script(src='/js/header.js')
     script(src='/js/index.js')
