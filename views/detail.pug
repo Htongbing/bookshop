@@ -156,6 +156,30 @@ html(lang='en')
             .write
               textarea(placeholder="请输入评论内容")
               button 发 表 评 论
+    .dialog#pay-dialog
+      .pay-container
+        span.icon-cross.close-win#close-pay-win
+        h1.pay-header 支付窗口
+        .pay-content
+          .pay-box
+            span.pay-tip 购买的商品数量：
+            span.pay-num#pay-shop-num 1
+          .pay-box
+            span.pay-tip 需要支付的价格：
+            span.pay-num#pay-all-price &yen;100
+          .pay-box
+            span.pay-tip 账户余额：
+            span.pay-num#pay-user-money &yen;100
+            button 充 值
+          .pay-box
+            span.pay-tip 手机号码：
+            input.pay-input#pay-phone(type="text")
+          .pay-box
+            span.pay-tip 收货地址：
+            input.pay-input#pay-address(type="text")
+        .pay-btn
+          button#pay-com 确 认
+          button#pay-cancel 取 消
     script(src='/js/utils.js')
     script(src='/js/header.js')
     script(src='/js/detail.js')

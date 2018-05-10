@@ -120,6 +120,11 @@ let utils = (function(){
 		ajax(option);
 	};
 
+	function setStyle(ele, attr, num){
+		ele.style[attr] = num;
+		return ele;
+	};
+
 	return {
 		selectEle,
 		bindEvent,
@@ -132,6 +137,7 @@ let utils = (function(){
 		children,
 		handleCookie,
 		attr,
-		updateShopping
+		updateShopping,
+		setStyle
 	};
 })();

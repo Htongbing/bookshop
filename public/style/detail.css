@@ -560,3 +560,80 @@ header{
 .write button:hover{
 	opacity: 0.7;
 }
+.dialog{
+	width: 100%;
+	min-height: 100%;
+	position: fixed;
+	background-color: rgba(33, 33, 33, 0.5);
+	z-index: 999;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+}
+.pay-container{
+	width: 50vw;
+	height: 400px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background-color: #fff;
+	padding: 20px;
+	font-size: 16px;
+}
+.pay-header{
+	font-size: 20px;
+	color: red;
+	border-bottom: 4px solid red;
+	line-height: 40px;
+}
+.close-win{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	cursor: pointer;
+	color: #999;
+}
+.pay-btn{
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+}
+.pay-btn button,
+.pay-box button{
+	line-height: 1;
+	padding: 10px 20px;
+	border-radius: 4px;
+	font-size: 18px;
+	color: #fff;
+	margin-left: 20px;
+	cursor: pointer;
+}
+.pay-btn button:first-child,
+.pay-box button{
+	background-color: red;
+}
+.pay-btn button:last-child{
+	background-color: #ccc;
+}
+.pay-box{
+	margin-top: 20px;
+}
+.pay-tip{
+	display: inline-block;
+	width: 50%;
+	text-align: right;
+}
+.pay-num{
+	color: red;
+	font-weight: bold;
+}
+.pay-input{
+	width: 45%;
+	padding: 10px 5px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}

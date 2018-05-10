@@ -263,7 +263,7 @@ app.get("/shopping/num", function(req, res){
 		shopping.forEach((item) => {
 			result.num += item.num;
 		});
-		res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+		res.writeHead(200, {"content-type": "application/json;charset=utf-8;"})
 		res.end(JSON.stringify(result));
 	});
 });
@@ -354,6 +354,34 @@ app.get("/user", function(req, res){
 				title: "个人中心",
 				data: obj
 			});
+		});
+	});
+});
+
+app.get("/user/info", function(req, res){
+	let username = req.cookies.username;
+	let obj = {
+		username
+	};
+	let result = {
+		status: 1,
+		data: obj
+	};
+	User.findOne({"username": username}, function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		obj.telephone = data.telephone || "";
+		obj.address = data.address || "";
+		Consumption.findOne({"username": username}, function(err, newData){
+			if(err){
+				console.log(err);
+				return;
+			};
+			obj.money = newData.money;
+			res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+			res.end(JSON.stringify(result));
 		});
 	});
 });
