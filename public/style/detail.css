@@ -532,3 +532,31 @@ header{
 	text-align: center;
 	line-height: 28px;
 }
+.write textarea{
+	width: 100%;
+	height: 200px;
+	outline: none;
+	resize: none;
+	box-sizing: border-box;
+	padding: 5px 10px;
+	font-size: 16px;
+	line-height: 26px;
+	color: #666;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+.write button{
+	display: block;
+	width: 30%;
+	line-height: 1;
+	padding: 10px 20px;
+	background-color: red;
+	color: #fff;
+	margin: 20px auto;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 28px;
+}
+.write button:hover{
+	opacity: 0.7;
+}

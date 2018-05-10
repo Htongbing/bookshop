@@ -83,19 +83,19 @@ html(lang='en')
           .tab.active
             .box
               label 用户名：
-              span a18814382747
+              span #{data.username}
             .box
               label 性别：
-              select(value="")
+              select(value=data.sex)
                 option(value="") 
                 option(value="男") 男
                 option(value="女") 女
             .box
               label 手机号：
-              input(type="text")
+              input(type="text", value=data.telephone)
             .box
               label 余额：
-              span &yen;100.00
+              span &yen;#{(data.money).toFixed(2)}
               button 充值
             .btn
               button 修改
@@ -112,7 +112,7 @@ html(lang='en')
               input(type="password")
             .btn
               button 修改
-              button 重置
+              button.password_reload 重置
           .tab
             .box
               label 旧支付密码：
@@ -125,44 +125,35 @@ html(lang='en')
               input(type="password")
             .btn
               button 修改
-              button 重置
+              button.password_reload 重置
           .tab
             .box
               label 收货地址：
-              input(type="text")
+              input(type="text", value=data.address)
             .btn
               button 修改
               button 重置
           .tab
             .box
-              table
-                tr
-                  th 订单编号
-                  th 下单时间
-                  th 消费金额
-                  th 订单状态
-                  th 操作
-                tr
-                  td 44520201805092205326
-                  td 2018-05-09 22:05
-                  td 213.54
-                  td 待发货
-                  td
-                    a(href="https://www.kuaidi100.com/chaxun?com=huitongkuaidi&nu=71263967936202", target="_blank") 查看物流
-                tr
-                  td 44520201805092205345
-                  td 2018-05-09 22:05
-                  td 213.54
-                  td 已发货
-                  td
-                    a(href="https://www.kuaidi100.com/chaxun?com=huitongkuaidi&nu=71263967936202", target="_blank") 查看物流
-                tr
-                  td 44520201805082205345
-                  td 2018-05-09 22:05
-                  td 213.54
-                  td 已签收
-                  td
-                    a(href="https://www.kuaidi100.com/chaxun?com=huitongkuaidi&nu=71263967936202", target="_blank") 查看物流
+              if data.detail.length > 0
+                table
+                  tr
+                    th 订单编号
+                    th 下单时间
+                    th 商品数量
+                    th 消费金额
+                    th 订单状态
+                    th 操作
+                  tr
+                    td 44520201805092205326
+                    td 2018-05-09 22:05
+                    td 3
+                    td 213.54
+                    td 待发货
+                    td
+                      a(href="https://www.kuaidi100.com/chaxun?com=huitongkuaidi&nu=71263967936202", target="_blank") 查看物流
+              else
+                div.no-result 暂时没有数据
     script(src='/js/utils.js')
     script(src='/js/header.js')
     script(src="/js/user.js")

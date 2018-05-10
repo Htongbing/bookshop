@@ -330,6 +330,34 @@ app.post("/shopping/remove", function(req, res){
 	});
 });
 
+app.get("/user", function(req, res){
+	let username = req.cookies.username;
+	let obj = {
+		username
+	};
+	User.findOne({"username": username}, function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		obj.sex = data.sex || "";
+		obj.telephone = data.telephone || "";
+		obj.address = data.address || "";
+		Consumption.findOne({"username": username}, function(err, newData){
+			if(err){
+				console.log(err);
+				return;
+			};
+			obj.money = newData.money;
+			obj.detail = newData.detail;
+			res.render("user", {
+				title: "个人中心",
+				data: obj
+			});
+		});
+	});
+});
+
 app.get("/book/:id", function(req, res){
 	let id = req.params.id;
 	Book.findById(id, function(err, book){
@@ -432,12 +460,6 @@ app.get("/shopping", function(req, res){
 			title: "购物车",
 			shopping: data.shoppingCart
 		});
-	});
-});
-
-app.get("/user", function(req, res){
-	res.render("user", {
-		title: "个人中心"
 	});
 });
 
