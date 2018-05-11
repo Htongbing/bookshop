@@ -7,11 +7,50 @@
 	const numPlus = utils.selectEle("num_plus");
 	const numMinus = utils.selectEle("num_minus");
 	const addCart = utils.selectEle("addCart");
-	const comment = utils.selectEle("comment");
+	const commentBtn = utils.selectEle("comment-btn");
 	const list = utils.selectEle("list");
 	const tabLiAry = utils.selectTag(list, "li");
-	const tabAry = utils.children(comment, "div");
+	const tabAry = utils.children(commentBtn, "div");
 	const buyNow = utils.selectEle("buyNow");
+	const commentSend = utils.selectEle("comment-send");
+	const commentContent = utils.selectEle("comment-content");
+	const payAdd = utils.selectEle("pay-add");
+	const payUserMoney = utils.selectEle("pay-user-money");
+
+	utils.bindEvent(payAdd, "click", function(){
+		let option = {
+			type: "get",
+			url: "/pay/add",
+			async: true,
+			success: function(res){
+				if(res.status === 1){
+					utils.html(payUserMoney, "&yen;" + res.val.toFixed(2));
+				};
+			},
+			data: null
+		};
+		utils.ajax(option);
+	});
+
+	utils.bindEvent(commentSend, "click", function(){
+		if(utils.val(commentContent) === ""){
+			utils.openTipDialog("评论内容不能为空");
+			return;
+		};
+		let option = {
+			type: "post",
+			url: "/comment",
+			async: true,
+			success: function(res){
+				utils.openTipDialog(res.msg);
+			},
+			data: {
+				content: utils.val(commentContent),
+				bookId: utils.attr(this, "bookId")
+			}
+		};
+		utils.ajax(option);
+	});
 
 	utils.openPayWinEvent();
 	utils.tipDialogEvent();

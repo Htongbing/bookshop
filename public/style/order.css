@@ -1,0 +1,121 @@
+table{
+	width: 90%;
+	margin: 20px auto;
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+}
+td,
+th{
+	text-align: center;
+	padding: 15px 0;
+	border: 1px solid #ccc;
+}
+td a:hover{
+	color: red;
+	text-decoration: underline;
+}
+th{
+	background-color: red;
+	color: #fff;
+	opacity: 0.7;
+}
+.no-result{
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 16px;
+	color: #666;
+	height: 300px;
+	line-height: 300px
+}
+.dialog{
+	width: 100%;
+	min-height: 100%;
+	position: fixed;
+	background-color: rgba(33, 33, 33, 0.5);
+	z-index: 999;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+}
+.tip-container{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background-color: #fff;
+	padding: 20px;
+	font-size: 16px;
+	width: 25%;
+	height: 150px;
+}
+.tip-btn{
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	line-height: 1;
+	padding: 10px 20px;
+	border-radius: 4px;
+	font-size: 16px;
+	color: #fff;
+	margin-left: 20px;
+	cursor: pointer;
+	background-color: red;
+}
+.tip-container p{
+	line-height: 50px;
+}
+.close-win{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	cursor: pointer;
+	color: #999;
+}
+.password-container{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background-color: #fff;
+	padding: 20px;
+	font-size: 16px;
+	width: 25%;
+	height: 250px;
+}
+.password-container p{
+	line-height: 50px;
+}
+.password-container input{
+	width: 100%;
+	padding: 10px 5px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+.pay-btn.password-btn button{
+	border: none;
+	font-size: 16px;
+}
+.pay-btn.password-btn button:first-child{
+	background-color: red;
+}
+.pay-btn{
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+}
+.pay-btn button{
+	line-height: 1;
+	padding: 10px 20px;
+	border-radius: 4px;
+	font-size: 18px;
+	color: #fff;
+	margin-left: 20px;
+	cursor: pointer;
+}

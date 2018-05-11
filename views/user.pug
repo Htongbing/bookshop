@@ -95,8 +95,8 @@ html(lang='en')
               input(type="text", value=data.telephone)
             .box
               label 余额：
-              span &yen;#{(data.money).toFixed(2)}
-              button 充值
+              span#pay-user-money &yen;#{(data.money).toFixed(2)}
+              button#pay-add 充值
             .btn
               button 修改
               button 重置
@@ -145,14 +145,16 @@ html(lang='en')
                     th 消费金额
                     th 订单状态
                     th 操作
-                  tr
-                    td 44520201805092205326
-                    td 2018-05-09 22:05
-                    td 3
-                    td 213.54
-                    td 待发货
-                    td
-                      a(href="https://www.kuaidi100.com/chaxun?com=huitongkuaidi&nu=71263967936202", target="_blank") 查看物流
+                  each item in data.detail
+                    tr
+                      td #{item.orderNum}
+                      td #{moment(item.time).format("YYYY/MM/DD HH:mm:ss")}
+                      td #{item.detail.num}
+                      td #{item.detail.sumPrice.toFixed(2)}
+                      td #{item.state}
+                      td
+                        if item.state !== "待发货"
+                          a(href="https://www.kuaidi100.com/chaxun?com=" + item.expCom + "&nu=" + item.expNum, target="_blank") 查看物流
               else
                 div.no-result 暂时没有数据
     .dialog#tip-dialog

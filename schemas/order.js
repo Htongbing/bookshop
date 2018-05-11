@@ -2,10 +2,7 @@ let mongoose = require("mongoose");
 
 let OrderSchema = new mongoose.Schema({
 	orderNum: String,
-	username: {
-		unique: true,
-		type: String
-	},
+	username: String,
 	state: {
 		type: String,
 		default: "待发货"
@@ -14,7 +11,14 @@ let OrderSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now()
 	},
-	detail: Object
+	detail: Object,
+	expCom: String,
+	expNum: Number
+});
+
+OrderSchema.pre("save", function(next){
+	this.time = Date.now();
+	next();
 });
 
 OrderSchema.statics = {

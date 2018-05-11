@@ -18,6 +18,7 @@ let UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre("save", function(next){
+	this.createTime = Date.now();
 	let user = this;
 	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
 		if(err){

@@ -147,7 +147,7 @@ let utils = (function(){
 		ajax(option);
 	};
 
-	function openPayWinEvent(){
+	function openPayWinEvent(cart){
 		const closePayWin = selectEle("close-pay-win");
 		const payCancel = selectEle("pay-cancel");
 		const payCom = selectEle("pay-com");
@@ -168,8 +168,15 @@ let utils = (function(){
 			if(val(this).length === 6){
 				setStyle(passwordCom, "backgroundColor", "red");
 				setStyle(passwordCom, "cursor", "pointer");
+				if(!cart){
+					passwordCom.onclick = function(){
+						comPayFun(val(payPassword), val(payPhone), val(payAddress), parseFloat(html(payShopNum)), parseFloat(html(payAllPrice).slice(1)), attr(payShopNum, "bookId"));
+					};
+					return;
+				};
 				passwordCom.onclick = function(){
-					comPayFun(val(payPassword), val(payPhone), val(payAddress), parseFloat(html(payShopNum)), parseFloat(html(payAllPrice).slice(1)), attr(payShopNum, "bookId"));
+					let bookId = JSON.parse(attr(payShopNum, "bookId"));
+					comPayFun(val(payPassword), val(payPhone), val(payAddress), parseFloat(html(payShopNum)), parseFloat(html(payAllPrice).slice(1)), bookId);
 				};
 				return;
 			};

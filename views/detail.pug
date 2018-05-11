@@ -112,7 +112,7 @@ html(lang='en')
                 span.icon-cart
                 | 加入购物车
               a(href='javascript:;', id="buyNow") 立即购买
-        .comment#comment
+        .comment#comment-btn
           ul#list
             li.active 商品详情
             li 商品评论
@@ -137,25 +137,21 @@ html(lang='en')
                     | &gt;
                     a(href="/list?first=" + book.classify.first + "&second=" + book.classify.second) #{book.classify.second}
           .com_list
-            .com_region
-              .com_item
-                .item_left
-                  p.des_detail 这个世界上有两样东西不可直视，一是太阳，一是人心。
-                  p.des_time 2018-02-01 20:03:33
-                .item_right
-                  img(src='/images/default.gif')
-                  p 无昵称用户
-              .com_item
-                .item_left
-                  p.des_detail
-                    | 白金数据，由日本推理小说家东野圭吾所著的悬疑小说， 由 《白金数据》这部小说改编的同名电影《白金数据》已于2013年3月在日本上映了，相信有很多东野圭吾的粉丝已经看过这部电影了，至于是否忠于原著那就是“仁者见仁，智者见智”的事情了。
-                  p.des_time 2018-02-01 20:03:33
-                .item_right
-                  img(src='/images/default.gif')
-                  p 无昵称用户
+            if comments.length > 0
+              .com_region
+                each item in comments
+                  .com_item
+                    .item_left
+                      p.des_detail #{item.content}
+                      p.des_time #{moment(item.time).format("YYYY/MM/DD HH:mm:ss")}
+                    .item_right
+                      img(src='/images/default.gif')
+                      p #{item.username}
+            else
+              div.no-result 暂时没有数据
             .write
-              textarea(placeholder="请输入评论内容")
-              button 发 表 评 论
+              textarea#comment-content(placeholder="请输入评论内容")
+              button#comment-send(bookId=book.id) 发 表 评 论
     .dialog#pay-dialog
       .pay-container
         span.icon-cross.close-win#close-pay-win
@@ -170,7 +166,7 @@ html(lang='en')
           .pay-box
             span.pay-tip 账户余额：
             span.pay-num#pay-user-money &yen;100
-            button 充 值
+            button#pay-add 充 值
           .pay-box
             span.pay-tip 手机号码：
             input.pay-input#pay-phone(type="text")

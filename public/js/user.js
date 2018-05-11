@@ -7,6 +7,23 @@
 	let newRepay = utils.selectEle("new-repay");
 	let payChange = utils.selectEle("pay-change");
 	let oldPay = utils.selectEle("old-pay");
+	let payAdd = utils.selectEle("pay-add");
+	let payUserMoney = utils.selectEle("pay-user-money");
+
+	utils.bindEvent(payAdd, "click", function(){
+		let option = {
+			type: "get",
+			url: "/pay/add",
+			async: true,
+			success: function(res){
+				if(res.status === 1){
+					utils.html(payUserMoney, "&yen;" + res.val.toFixed(2));
+				};
+			},
+			data: null
+		};
+		utils.ajax(option);
+	});
 
 	utils.tipDialogEvent();
 

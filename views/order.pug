@@ -1,0 +1,54 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title #{title}
+    link(rel='stylesheet', href='/style/reset.css')
+    link(rel='stylesheet', href='/style/fonts.css')
+    link(rel='stylesheet', href='/style/order.css')
+  body
+    if orders.length > 0
+      table
+        tr
+          th 订单编号
+          th 用户名
+          th 下单时间
+          th 商品数量
+          th 商品名称
+          th 消费金额
+          th 订单状态
+          th 操作
+        each item in orders
+          tr
+            td #{item.orderNum}
+            td #{item.username}
+            td #{moment(item.time).format("YYYY/MM/DD HH:mm:ss")}
+            if item.detail.itemNum
+              td #{item.detail.itemNum}
+            else
+              td #{item.detail.num}
+            td #{item.detail.name}
+            td #{item.detail.sumPrice.toFixed(2)}
+            td #{item.state}
+            td
+              if item.state === "待发货"
+                a(href="javascript:;", orderId=item._id).express 发货
+    else
+      div.no-result 暂时没有数据
+    .dialog#password-dialog
+      .password-container
+        p 请输入快递公司
+        input#express-com(type="text")
+        p 请输入快递单号
+        input#express-num(type="text")
+        .pay-btn.password-btn
+          button#password-com 确 认
+          button#password-cancel 取 消
+    .dialog#tip-dialog
+      .tip-container
+        span.icon-cross.close-win#close-tip-win
+        p#tip 这是提示信息
+        button.tip-btn#tip-com 确 定
+    script(src='/js/utils.js')
+    script(src='/js/order.js')
+    

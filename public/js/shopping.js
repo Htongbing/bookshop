@@ -9,9 +9,17 @@
 	let itemDelAry = utils.selectClass("item_del");
 	let list = utils.selectEle("list");
 	let allDel = utils.selectEle("all_del");
+	let payMoney = utils.selectEle("pay-money");
+	let payShopNum = utils.selectEle("pay-shop-num");
 
 	if(allNum){
 		compute();
+		utils.openPayWinEvent(true);
+		utils.tipDialogEvent();
+
+		utils.bindEvent(payMoney, "click", function(){
+			utils.openPayWin(utils.html(allNum), utils.html(allPrice));
+		});
 		
 		allSelectAry.forEach((item) => {
 			utils.bindEvent(item, "click", function(){
@@ -178,6 +186,7 @@
 	function compute(){
 		let num = 0;
 		let price = 0;
+		let obj = {};
 		selectAry.forEach((item) => {
 			if(item.className === "select"){
 				let tarLi = item.parentNode.parentNode;
@@ -185,8 +194,10 @@
 				let itemAllPrice = utils.selectClass("item_all_price", tarLi)[0].innerHTML.slice(1);
 				num += parseFloat(inputVal);
 				price += parseFloat(itemAllPrice);
+				obj[utils.attr(tarLi, "bookId")] = parseFloat(inputVal);
 			};
 		});
+		utils.attr(payShopNum, "bookId", JSON.stringify(obj));
 		utils.html(allNum, num);
 		utils.html(allPrice, "&yen;" + price.toFixed(2));
 	};

@@ -5,9 +5,10 @@ let	app = express();
 let	mongoose = require("mongoose");
 let	Book = require("./models/book.js");
 let User = require("./models/user.js");
-let Root = require("./models/root.js");
+let Adm = require("./models/adm.js");
 let Order = require("./models/order.js");
 let Consumption = require("./models/consumption.js");
+let Comment = require("./models/comment.js");
 let	bodyParser = require("body-parser");
 let cookieParser = require("cookie-parser");
 let session = require("express-session");
@@ -18,6 +19,7 @@ let dbUrl = "mongodb://127.0.0.1:27017/bookshop";
 mongoose.connect(dbUrl);
 
 app.use(express.static(path.join(__dirname, "public")));
+app.locals.moment = require("moment");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
@@ -39,6 +41,58 @@ console.log("Server created successful and listening for port " + port + ".");
 app.use(function(req, res, next){
 	res.locals.user = req.session.user;
 	next();
+});
+
+app.get("/pay/add", function(req, res){
+	let username = req.cookies.username;
+	Consumption.findOne({"username": username}, function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		let num = data.money + 100;
+		Consumption.update({"username": username}, {$set:{"money": num}}, function(err, info){
+			if(err){
+				console.log(err);
+				return;
+			};
+			let result = {
+				status: 1,
+				val: num
+			};
+			res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+			res.end(JSON.stringify(result));
+		});
+	});
+});
+
+app.post("/comment", function(req, res){
+	let username = req.cookies.username;
+	let str = "";
+	let result = {
+		status: 0,
+		msg: "评论失败"
+	};
+	req.on("data", function(chunk){
+		str += chunk;
+	});
+	req.on("end", function(){
+		let obj = JSON.parse(str);
+		obj.username = username;
+		let comment = new Comment(obj);
+		comment.save(function(err, data){
+			if(err){
+				console.log(err);
+				return;
+			};
+			result = {
+				status: 1,
+				msg: "评论成功"
+			};
+			res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+			res.end(JSON.stringify(result));
+		});
+	});
 });
 
 app.post("/pay/change", function(req, res){
@@ -223,6 +277,68 @@ app.post("/pay", function(req, res){
 							};
 						});
 					});
+				}else{
+					let nameAry = [];
+					let numAry = [];
+					let idAry = [];
+					for(let key in obj.id){
+						numAry.push(obj.id[key]);
+						idAry.push(key);
+						Book.findOne({"_id": key}, function(err, tarBook){
+							if(err){
+								console.log(err);
+								return;
+							};
+							let num = tarBook.sale + obj.id[key];
+							Book.update({"_id": key}, {$set:{"sale": num}}, function(err, info){
+								if(err){
+									console.log(err);
+								};
+							});
+						});
+					};
+					idAry.forEach((newitem, index) => {
+						if(index === idAry.length - 1){
+							Book.findOne({"_id": newitem}, function(err, tarBook){
+								if(err){
+									console.log(err);
+									return;
+								};
+								nameAry.push(tarBook.name);
+								let detail = {
+									id: idAry,
+									itemNum: numAry,
+									name: nameAry,
+									num: obj.num,
+									sumPrice: obj.sumPrice
+								};
+								order.detail = detail;
+								let orderObj = new Order(order);
+								orderObj.save(function(err, info){
+									if(err){
+										console.log(err);
+									};
+									order.detail.id.forEach((item) => {
+										Consumption.update({"username": order.username}, {$pull: {"shoppingCart": {"id": item}}}, function(err, data){
+											if(err){
+												console.log(err);
+												return;
+											};
+										});
+									});
+								});
+							});
+						}else{
+							Book.findOne({"_id": newitem}, function(err, tarBook){
+								if(err){
+									console.log(err);
+									return;
+								};
+								nameAry.push(tarBook.name);
+							});
+						};
+						
+					});
 				};
 			});
 		});
@@ -277,6 +393,69 @@ app.get("/", function(req, res){
 app.get("/admin/login", function(req, res){
 	res.render("login", {
 		title: "管理员登录"
+	});
+});
+
+app.post("/admin/signin", function(req, res){
+	let user = req.body.user;
+	Adm.findOne({
+		admname: user.username
+	}, function(err, data){
+		if(err){
+			console.log(err);
+			return;
+		};
+		if(!data){
+			res.send("用户不存在");
+			return;
+		};
+		data.comparePassword(user.password, function(err, isMatch){
+			if(err){
+				console.log(err);
+				return;
+			};
+			if(!isMatch){
+				res.send("密码错误");
+				return;
+			};
+			res.cookie("admname", user.username);
+			res.redirect("/");
+		});
+	});
+});
+
+app.get("/admin/order", function(req, res){
+	if(!req.cookies.admname){
+		res.redirect("/");
+		return;
+	};
+	Order.find({}, function(err, orders){
+		if(err){
+			console.log(err);
+			return;
+		};
+		res.render("order", {
+			title: "后台订单列表",
+			orders
+		});
+	});
+});
+
+app.post("/order/express", function(req, res){
+	let str = "";
+	req.on("data", function(chunk){
+		str += chunk;
+	});
+	req.on("end", function(){
+		let obj = JSON.parse(str);
+		Order.update({"_id": obj.id}, {$set:{"state":"已发货", "expCom": obj.expCom, "expNum": obj.expNum}}, function(err, data){
+			if(err){
+				console.log(err);
+				return;
+			};
+			res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+			res.end(JSON.stringify(data));
+		});
 	});
 });
 
@@ -537,11 +716,17 @@ app.get("/user", function(req, res){
 				console.log(err);
 				return;
 			};
-			obj.money = newData.money;
-			obj.detail = newData.detail;
-			res.render("user", {
-				title: "个人中心",
-				data: obj
+			Order.find({"username": username}, function(err, ary){
+				if(err){
+					console.log(err);
+					return;
+				};
+				obj.money = newData.money;
+				obj.detail = ary;
+				res.render("user", {
+					title: "个人中心",
+					data: obj
+				});
 			});
 		});
 	});
@@ -582,9 +767,16 @@ app.get("/book/:id", function(req, res){
 			console.log(err);
 			return;
 		};
-		res.render("detail", {
-			title: book.name,
-			book: book
+		Comment.find({"bookId": id}, function(err, comments){
+			if(err){
+				console.log(err);
+				return;
+			};
+			res.render("detail", {
+				title: book.name,
+				book: book,
+				comments
+			});
 		});
 	});
 });
