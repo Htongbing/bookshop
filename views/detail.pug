@@ -163,7 +163,7 @@ html(lang='en')
         .pay-content
           .pay-box
             span.pay-tip 购买的商品数量：
-            span.pay-num#pay-shop-num 1
+            span.pay-num#pay-shop-num(bookId=book._id) 1
           .pay-box
             span.pay-tip 需要支付的价格：
             span.pay-num#pay-all-price &yen;100
@@ -180,6 +180,18 @@ html(lang='en')
         .pay-btn
           button#pay-com 确 认
           button#pay-cancel 取 消
+    .dialog#password-dialog
+      .password-container
+        p 请输入6位支付密码
+        input#pay-password(type="password")
+        .pay-btn.password-btn
+          button#password-com 确 认
+          button#password-cancel 取 消
+    .dialog#tip-dialog
+      .tip-container
+        span.icon-cross.close-win#close-tip-win
+        p#tip 这是提示信息
+        button.tip-btn#tip-com 确 定
     script(src='/js/utils.js')
     script(src='/js/header.js')
     script(src='/js/detail.js')

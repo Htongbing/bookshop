@@ -341,3 +341,54 @@ header{
 	height: 300px;
 	line-height: 300px
 }
+.tip{
+	color: red;
+	font-size: 14px;
+	margin-left: 10px;
+}
+.dialog{
+	width: 100%;
+	min-height: 100%;
+	position: fixed;
+	background-color: rgba(33, 33, 33, 0.5);
+	z-index: 999;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+}
+.tip-container{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background-color: #fff;
+	padding: 20px;
+	font-size: 16px;
+	width: 25%;
+	height: 150px;
+}
+.tip-btn{
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	line-height: 1;
+	padding: 10px 20px;
+	border-radius: 4px;
+	font-size: 16px;
+	color: #fff;
+	margin-left: 20px;
+	cursor: pointer;
+	background-color: red;
+}
+.tip-container p{
+	line-height: 50px;
+}
+.close-win{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	cursor: pointer;
+	color: #999;
+}

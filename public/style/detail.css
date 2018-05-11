@@ -573,6 +573,10 @@ header{
 .pay-container{
 	width: 50vw;
 	height: 400px;
+}
+.pay-container,
+.tip-container,
+.password-container{
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -596,13 +600,15 @@ header{
 	cursor: pointer;
 	color: #999;
 }
-.pay-btn{
+.pay-btn,
+.tip-btn{
 	position: absolute;
 	bottom: 20px;
 	right: 20px;
 }
 .pay-btn button,
-.pay-box button{
+.pay-box button,
+.tip-btn{
 	line-height: 1;
 	padding: 10px 20px;
 	border-radius: 4px;
@@ -611,8 +617,12 @@ header{
 	margin-left: 20px;
 	cursor: pointer;
 }
+.tip-btn{
+	font-size: 16px;
+}
 .pay-btn button:first-child,
-.pay-box button{
+.pay-box button,
+.tip-btn{
 	background-color: red;
 }
 .pay-btn button:last-child{
@@ -636,4 +646,28 @@ header{
 	font-size: 16px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+}
+.tip-container,
+.password-container{
+	width: 25%;
+	height: 150px;
+}
+.tip-container p,
+.password-container p{
+	line-height: 50px;
+}
+.pay-btn.password-btn button{
+	font-size: 16px;
+}
+.pay-btn.password-btn button:first-child{
+	background-color: #ccc;
+	cursor: not-allowed;
+}
+.password-container input{
+	width: 100%;
+	padding: 10px 5px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
 }

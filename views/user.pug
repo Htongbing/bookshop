@@ -116,15 +116,16 @@ html(lang='en')
           .tab
             .box
               label 旧支付密码：
-              input(type="password")
+              input#old-pay(type="password")
+              span.tip 从未设置过支付密码的请留空
             .box
               label 新支付密码：
-              input(type="password")
+              input#new-pay(type="password")
             .box
               label 再次输入密码：
-              input(type="password")
+              input#new-repay(type="password")
             .btn
-              button 修改
+              button#pay-change 修改
               button.password_reload 重置
           .tab
             .box
@@ -154,6 +155,11 @@ html(lang='en')
                       a(href="https://www.kuaidi100.com/chaxun?com=huitongkuaidi&nu=71263967936202", target="_blank") 查看物流
               else
                 div.no-result 暂时没有数据
+    .dialog#tip-dialog
+      .tip-container
+        span.icon-cross.close-win#close-tip-win
+        p#tip 这是提示信息
+        button.tip-btn#tip-com 确 定
     script(src='/js/utils.js')
     script(src='/js/header.js')
     script(src="/js/user.js")

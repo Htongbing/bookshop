@@ -6,6 +6,7 @@ let	mongoose = require("mongoose");
 let	Book = require("./models/book.js");
 let User = require("./models/user.js");
 let Root = require("./models/root.js");
+let Order = require("./models/order.js");
 let Consumption = require("./models/consumption.js");
 let	bodyParser = require("body-parser");
 let cookieParser = require("cookie-parser");
@@ -38,6 +39,194 @@ console.log("Server created successful and listening for port " + port + ".");
 app.use(function(req, res, next){
 	res.locals.user = req.session.user;
 	next();
+});
+
+app.post("/pay/change", function(req, res){
+	let username = req.cookies.username;
+	let str = "";
+	let result = {
+		status: 0,
+		msg: "修改失败"
+	};
+	req.on("data", function(chunk){
+		str += chunk;
+	});
+	req.on("end", function(){
+		let obj = JSON.parse(str);
+		Consumption.findOne({"username": username}, function(err, data){
+			if(err){
+				console.log(err);
+				return;
+			};
+			if(!data.password && obj.oldPass === ""){
+				Consumption.updatePassword(username, obj.newPass, function(err, info){
+					if(err){
+						console.log(err);
+						return;
+					};
+					res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+					if(info.ok === 1){
+						result = {
+							status: 1,
+							msg: "修改成功"
+						};
+					};
+					res.end(JSON.stringify(result));
+				});
+				return;
+			};
+			data.comparePassword(obj.oldPass, function(err, isMatch){
+				if(err){
+					console.log(err);
+					return;
+				};
+				if(!isMatch){
+					result = {
+						status: 0,
+						msg: "旧密码输入错误"
+					};
+					res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+					res.end(JSON.stringify(result));
+					return;
+				};
+				Consumption.updatePassword(username, obj.newPass, function(err, info){
+					if(err){
+						console.log(err);
+						return;
+					};
+					res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+					if(info.ok === 1){
+						result = {
+							status: 1,
+							msg: "修改成功"
+						};
+					};
+					res.end(JSON.stringify(result));
+				});
+			});
+		});
+	});
+});
+
+app.post("/pay", function(req, res){
+	let username = req.cookies.username;
+	let str = "";
+	let result = {
+		status: 0,
+		msg: "未设置支付密码"
+	};
+	req.on("data", function(chunk){
+		str += chunk;
+	});
+	req.on("end", function(){
+		let obj = JSON.parse(str);
+		Consumption.findOne({"username": username}, function(err, data){
+			if(err){
+				console.log(err);
+				return;
+			};
+			if(!data.password){
+				res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+				res.end(JSON.stringify(result));
+				return;
+			};
+			data.comparePassword(obj.payPass, function(err, isMatch){
+				if(err){
+					console.log(err);
+					return;
+				};
+				if(!isMatch){
+					result = {
+						status: 0,
+						msg: "支付密码错误"
+					};
+					res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+					res.end(JSON.stringify(result));
+					return;
+				};
+				if(data.money < obj.sumPrice){
+					result = {
+						status: 0,
+						msg: "余额不足"
+					};
+					res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+					res.end(JSON.stringify(result));
+					return;
+				};
+				result = {
+					status: 1,
+					msg: "支付成功"
+				};
+				res.writeHead(200, {"content-type": "application/json;charset=utf-8;"});
+				res.end(JSON.stringify(result));
+				let tarMoney = data.money - obj.sumPrice;
+				Consumption.update({"username": username}, {$set: {"money": tarMoney}}, function(err, info){
+					if(err){
+						console.log(err);
+					};
+				});
+				User.findOne({"username": username}, function(err, newData){
+					if(err){
+						console.log(err);
+						return;
+					};
+					if(!newData.telephone){
+						User.update({"username": username}, {$set:{"telephone": obj.telephone}}, function(err, info){
+							if(err){
+								console.log(err);
+								return;
+							};
+						});
+					};
+					if(!newData.address){
+						User.update({"username": username}, {$set:{"address": obj.address}}, function(err, info){
+							if(err){
+								console.log(err);
+								return;
+							};
+						});
+					};
+				});
+				let order = {
+					username: username
+				};
+				let date = new Date();
+				let dateStr = "" + date.getFullYear() + (date.getMonth() + 1) + date.getDate() + date.getHours() + date.getMinutes() + date.getSeconds();
+				let randomNum = 20 - dateStr.length;
+				for(let i = 0; i < randomNum; i++){
+					dateStr += Math.floor(Math.random() * 10);
+				};
+				order.orderNum = dateStr;
+				if(typeof obj.id === "string"){
+					Book.findOne({"_id": obj.id}, function(err, tarBook){
+						if(err){
+							console.log(err);
+							return;
+						};
+						let num = tarBook.sale + obj.num;
+						Book.update({"_id": obj.id}, {$set:{"sale": num}}, function(err, info){
+							if(err){
+								console.log(err);
+							};
+						});
+						let detail = {
+							id: tarBook._id + "",
+							name: tarBook.name,
+							num: obj.num,
+							sumPrice: obj.sumPrice
+						};
+						order.detail = detail;
+						let orderObj = new Order(order);
+						orderObj.save(function(err, info){
+							if(err){
+								console.log(err);
+							};
+						});
+					});
+				};
+			});
+		});
+	});
 });
 
 app.get("/", function(req, res){
